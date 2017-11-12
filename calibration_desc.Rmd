@@ -1,0 +1,14 @@
+## Main two calibtations
+
+(to be done with each of two diffraction gratings independently)
+
+### Calibrate wavelength using gas-discharge lamps
+
+* [wiki link](https://en.wikipedia.org/wiki/Gas-discharge_lamp)
+* Lines can be found on NIST websites. For example for HE [here](https://physics.nist.gov/PhysRefData/Handbook/Tables/heliumtable2.htm)
+* Alternative, more precise method is described [here](http://www.americanlaboratory.com/914-Application-Notes/1596-A-High-Precision-Calibration-Method-for-Spectrometers/) 
+
+### Calibrate intensity using tungsten-halogen lamp
+
+* We have SLS201 light source from Thorlabs. Data for updated version of the lamp SLS201L [here](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_ID=7269). You can contact company for the data for SLS201
+* While calibrating typically we use 3 silver mirrors and a focusing lens in the lightpass before spectrograph
