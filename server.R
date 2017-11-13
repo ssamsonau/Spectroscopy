@@ -8,7 +8,7 @@
 library(shiny)
 library(ggplot2)
 library(plotly)
-library(dplyr)
+library(tidyverse)
 
 shinyServer(function(input, output) {
 
@@ -106,6 +106,67 @@ shinyServer(function(input, output) {
     ggplotly()
   })
   
+  
+  finalSpectrum <- eventReactive(input$calculate, {
+    #browser()
+    
+    wl <- final_data()$wavelength
+    
+    backg <- final_data() %>%
+      filter(type == "background") %>%
+      select(intensity) %>% unlist 
+    
+    ref <- final_data() %>%
+      filter(type == "reference") %>%
+      select(intensity) %>% unlist 
+    
+    sig <- final_data() %>%
+      filter(type == "signal") %>%
+      select(intensity) %>% unlist 
+    
+    res <- eval(parse(text = input$formula_text))
+
+    #browser()
+    tibble(
+      wavelength = wl[seq_along(res)],
+      intensity = res
+    )
+    
+  })
+  
+  output$finalSpectrum_plot <- renderPlotly({
+    
+    if(is.null(finalSpectrum()))
+      return()
+    
+    ggplot(finalSpectrum()) +
+      geom_point(aes(x = wavelength, y = intensity))
+    ggplotly()
+  })
+  
+  output$finalSpectrum_dt <- DT::renderDataTable({
+    
+    if(is.null(finalSpectrum()))
+      return()
+    
+    finalSpectrum()
+  }, rownames = F)
+  
+  output$download_dt <- downloadHandler(
+    
+    # This function returns a string which tells the client
+    # browser what name to use when saving the file.
+    filename = function() {
+      paste0("Data_", Sys.time(), ".csv")
+    },
+    
+    # This function should write data to a file given to it by
+    # the argument 'file'.
+    content = function(file) {# Write to a file specified by the 'file' argument
+      write.table(finalSpectrum(), file, sep = ",",
+                  row.names = FALSE)
+    }
+  )
   
 
 })

@@ -7,8 +7,8 @@
 
 library(shiny)
 library(ggplot2)
-library(dplyr)
 library(plotly)
+library(tidyverse)
 
 shinyUI(fluidPage(
 
@@ -31,14 +31,27 @@ shinyUI(fluidPage(
       
       h4("Additional optical Elements"),
       checkboxGroupInput("elements", label = "Choose elements in the optical path from a specimen to camera", 
-                         choices = c("dichroic mirror blue", "dichroic mirror green", 
-                                     "notch filter blue", "notch filter green")
+                         choices = c("dichroic mirror blue (not done)", "dichroic mirror green (not done)", 
+                                     "notch filter blue", "notch filter green (not done)")
       )
     ),
       
     # Show a plot of the generated distribution
     mainPanel(
-      plotlyOutput("dataPlot")
+      
+      h4("Raw data with modifications corresponding to specified optical elements in path"),
+      plotlyOutput("dataPlot"),
+      
+      
+      h4("Calculate final intensity spectrum using a specific formula"),
+      textInput("formula_text", 
+                "Specify a formula using backg, ref, sig for intensity of background, reference, signal",
+                "sig - backg", width = "100%"),
+      actionButton("calculate", "Calculate"),
+      plotlyOutput("finalSpectrum_plot"),
+      DT::dataTableOutput("finalSpectrum_dt"),
+      h4("Save final data to file"),
+      downloadButton("download_dt", "Download final data")
     )
   )
 ))
