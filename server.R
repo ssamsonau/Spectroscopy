@@ -126,22 +126,39 @@ shinyServer(function(input, output) {
     
     res <- eval(parse(text = input$formula_text))
 
-    #browser()
-    tibble(
-      wavelength = wl[seq_along(res)],
-      intensity = res
-    )
+    # only needed part of wl 
+    wl <- wl[seq_along(res)]
     
+    if(input$is_raman){
+      dt <- tibble(
+        RamanShift = ((1/532) - (1/wl))*1E7,
+        Intensity = res
+      )
+    }else{
+      dt <- tibble(
+        wavelength = wl,
+        Intensity = res
+      )
+    }
+    
+    dt
   })
   
   output$finalSpectrum_plot <- renderPlotly({
     
-    if(is.null(finalSpectrum()))
+    dt <- finalSpectrum()
+    if(is.null(dt))
       return()
     
-    ggplot(finalSpectrum()) +
-      geom_point(aes(x = wavelength, y = intensity))
+    ggplot(dt) +
+      geom_point(aes_string(x = names(dt)[1], y = names(dt)[2]))
+    
+    
     ggplotly()
+  })
+  
+  output$units <- renderText({
+    paste(names(finalSpectrum())[1], "is given in", ifelse(input$is_raman, "cm-1", "nm"))
   })
   
   output$finalSpectrum_dt <- DT::renderDataTable({

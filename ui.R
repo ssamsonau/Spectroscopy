@@ -47,8 +47,12 @@ shinyUI(fluidPage(
       textInput("formula_text", 
                 "Specify a formula using backg, ref, sig for intensity of background, reference, signal",
                 "sig - backg", width = "100%"),
+      checkboxInput("is_raman", "Is this Raman spectrum?", value = F),
       actionButton("calculate", "Calculate"),
       plotlyOutput("finalSpectrum_plot"),
+      h4("Units:"),
+      textOutput("units"),
+      h4("Table with data"),
       DT::dataTableOutput("finalSpectrum_dt"),
       h4("Save final data to file"),
       downloadButton("download_dt", "Download final data")
