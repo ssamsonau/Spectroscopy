@@ -96,16 +96,50 @@ shinyServer(function(input, output) {
     dt
   })
   
-  output$dataPlot <- renderPlotly({
+  output$dataPlot <- renderPlot({
     
     if(is.null(final_data()))
       return()
     
     ggplot(final_data()) +
-      geom_point(aes(x = wavelength, y = intensity, color = type))
-    ggplotly()
+      geom_point(aes(x = wavelength, y = intensity, color = type)) +
+      coord_cartesian(xlim = ranges_dataPlot$x, ylim = ranges_dataPlot$y, expand = FALSE)
+    
   })
   
+  ranges_dataPlot <- reactiveValues(x = NULL, y = NULL)
+  
+  observeEvent(input$dataPlot_dblclick, {
+    #browser()
+    brush <- input$dataPlot_brush
+    if (!is.null(brush)) {
+      ranges_dataPlot$x <- c(brush$xmin, brush$xmax)
+      ranges_dataPlot$y <- c(brush$ymin, brush$ymax)
+      
+    } 
+  })
+  
+  observeEvent(input$dataPlot_reset_but, {
+    ranges_dataPlot$x <- NULL
+    ranges_dataPlot$y <- NULL
+  })
+  
+  ranges_finalSpectrum_plot <- reactiveValues(x = NULL, y = NULL)
+  
+  observeEvent(input$finalSpectrum_plot_dblclick, {
+    #browser()
+    brush <- input$finalSpectrum_plot_brush
+    if (!is.null(brush)) {
+      ranges_finalSpectrum_plot$x <- c(brush$xmin, brush$xmax)
+      ranges_finalSpectrum_plot$y <- c(brush$ymin, brush$ymax)
+      
+    }
+  })
+  
+  observeEvent(input$finalSpectrum_plot_reset_but, {
+    ranges_finalSpectrum_plot$x <- NULL
+    ranges_finalSpectrum_plot$y <- NULL
+  })
   
   finalSpectrum <- eventReactive(input$calculate, {
     #browser()
@@ -131,7 +165,7 @@ shinyServer(function(input, output) {
     
     if(input$is_raman){
       dt <- tibble(
-        RamanShift = ((1/532) - (1/wl))*1E7,
+        RamanShift = ((1/input$laser_wavelength) - (1/wl))*1E7,
         Intensity = res
       )
     }else{
@@ -144,21 +178,19 @@ shinyServer(function(input, output) {
     dt
   })
   
-  output$finalSpectrum_plot <- renderPlotly({
+  output$finalSpectrum_plot <- renderPlot({
     
     dt <- finalSpectrum()
     if(is.null(dt))
       return()
     
     ggplot(dt) +
-      geom_point(aes_string(x = names(dt)[1], y = names(dt)[2]))
+      geom_point(aes_string(x = names(dt)[1], y = names(dt)[2])) +
+      coord_cartesian(xlim = ranges_finalSpectrum_plot$x, 
+                      ylim = ranges_finalSpectrum_plot$y, expand = FALSE) +
+      xlab(paste0(names(finalSpectrum())[1], " (", ifelse(input$is_raman, "cm-1", "nm"), ")"))
     
     
-    ggplotly()
-  })
-  
-  output$units <- renderText({
-    paste(names(finalSpectrum())[1], "is given in", ifelse(input$is_raman, "cm-1", "nm"))
   })
   
   output$finalSpectrum_dt <- DT::renderDataTable({
@@ -185,5 +217,13 @@ shinyServer(function(input, output) {
     }
   )
   
+  
+  output$finalSpectrum_plot_hover_text <- renderText({
+    xy_str <- function(e) {
+      if(is.null(e)) return("NULL\n")
+      paste0("x=", round(e$x, 1), " y=", round(e$y, 1), "\n")
+    }
+    paste( "Selected coordinates: ", xy_str(input$finalSpectrum_plot_hover))
+  })
 
 })

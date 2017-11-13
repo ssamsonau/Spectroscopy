@@ -40,18 +40,39 @@ shinyUI(fluidPage(
     mainPanel(
       
       h4("Raw data with modifications corresponding to specified optical elements in path"),
-      plotlyOutput("dataPlot"),
+      h5("To magnify: Select area and double-click."),
+      actionButton("dataPlot_reset_but", "Reset Magnification"),
+      plotOutput("dataPlot", 
+                 brush = brushOpts(
+                   id = "dataPlot_brush",
+                   resetOnNew = TRUE
+                 ),
+                 dblclick = "dataPlot_dblclick"),
       
       
       h4("Calculate final intensity spectrum using a specific formula"),
       textInput("formula_text", 
                 "Specify a formula using backg, ref, sig for intensity of background, reference, signal",
                 "sig - backg", width = "100%"),
-      checkboxInput("is_raman", "Is this Raman spectrum?", value = F),
-      actionButton("calculate", "Calculate"),
-      plotlyOutput("finalSpectrum_plot"),
-      h4("Units:"),
-      textOutput("units"),
+      checkboxInput("is_raman", "Is this Raman spectrum? (choose before pressign calculate or press calculate again)", 
+                    value = F, width = "100%"),
+      conditionalPanel('input.is_raman',
+                       numericInput("laser_wavelength", "Specify laser wavelength for Raman Shift calculation",
+                                    value = 532, width = "100%")
+                       ),
+      
+      actionButton("calculate", "Calculate (Recalculate)"),
+      
+      h5("To magnify: Select area and double-click."),
+      actionButton("finalSpectrum_plot_reset_but", "Reset Magnification"),
+      plotOutput("finalSpectrum_plot",
+                   brush = brushOpts(
+                     id = "finalSpectrum_plot_brush",
+                     resetOnNew = TRUE
+                   ),
+                   dblclick = "finalSpectrum_plot_dblclick", 
+                 hover = "finalSpectrum_plot_hover"),
+      verbatimTextOutput("finalSpectrum_plot_hover_text"),
       h4("Table with data"),
       DT::dataTableOutput("finalSpectrum_dt"),
       h4("Save final data to file"),
