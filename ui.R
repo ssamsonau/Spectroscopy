@@ -50,7 +50,16 @@ shinyUI(fluidPage(
                                           choices = c("dichroic mirror blue (not done)", "dichroic mirror green (not done)", 
                                                       "notch filter blue", "notch filter green (not done)")
                        )
-      )
+      ),
+      conditionalPanel(condition="input.conditionedPanels==4",
+                       radioButtons("notes_type", 
+                                    "Measurement", 
+                                    choices = c("Absorbance/Transmittance",
+                                                "Fluorescence", 
+                                                "Raman", 
+                                                "Source characterization") 
+                                    )
+                       )
       
       
     ),
@@ -114,13 +123,27 @@ shinyUI(fluidPage(
                  
                  ),
         
-        tabPanel("Absorbance/Transmittance notes", value = 4, 
-                 h6("films"),
-                 h6("Beer-Lambert with cuvette https://www.chemguide.co.uk/analysis/uvvisible/beerlambert.html")),
-        tabPanel("Fluorescence notes"), 
-        tabPanel("Raman notes"), 
-        tabPanel("Source characterization notes"), 
-        
+       
+        tabPanel("Applications notes", value = 4,
+                 conditionalPanel(condition="input.notes_type == 'Absorbance/Transmittance'",
+                                  h6("films"),
+                                  h6("Beer-Lambert with cuvette https://www.chemguide.co.uk/analysis/uvvisible/beerlambert.html")
+                                  ),
+                 
+                 conditionalPanel(condition="input.notes_type == 'Fluorescence'",
+                                  h4("Fluorescence")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Raman'",
+                                  h4("Raman")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Source characterization'",
+                                  h4("Source characterization")
+                 )
+                 
+                 
+                 ),
+                 
+                 
         
         id = "conditionedPanels"
       )
