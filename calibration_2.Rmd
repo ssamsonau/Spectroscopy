@@ -5,7 +5,7 @@
     - [300/500](http://www.gratinglab.com/Products/Product_Tables/Efficiency/Efficiency.aspx?catalog=53-*-270R) 
     - [1200/600](http://www.gratinglab.com/Products/Product_Tables/Efficiency/Efficiency.aspx?catalog=53-*-340R)
 * We have SLS201 light source from Thorlabs. Data for spectrume can be loaded from  [here](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_ID=7269). (Updated version of light source SLS201L has the same bulb, and thus the same spectrum as SLS201.)
-* While calibrating typically we use 3 silver mirrors and a focusing lens in the lightpass before spectrograph
+* While calibrating typically we use 4 silver mirrors and a focusing lens in the lightpass before spectrograph
 
 * __use of fiber cable and collimator__ 
     - use them during calibration if you are going to characterize source, guiding light through fiber cable and collimator

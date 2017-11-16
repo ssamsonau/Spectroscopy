@@ -43,7 +43,7 @@ shinyUI(fluidPage(
                                      value = T),
                        
                        numericInput("n_mirrors", "Specify a number of silver mirrors in the light path",
-                                    value = 3),
+                                    value = 4),
                        
                        h4("Additional optical Elements"),
                        checkboxGroupInput("elements", label = "Choose elements in the optical path from a specimen to camera", 
