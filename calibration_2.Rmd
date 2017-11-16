@@ -7,6 +7,10 @@
 * We have SLS201 light source from Thorlabs. Data for spectrume can be loaded from  [here](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_ID=7269). (Updated version of light source SLS201L has the same bulb, and thus the same spectrum as SLS201.)
 * While calibrating typically we use 3 silver mirrors and a focusing lens in the lightpass before spectrograph
 
-* __Do callibration without use of fiber cable and collimator__ 
+* __use of fiber cable and collimator__ 
+    - use them during calibration if you are going to characterize source, guiding light through fiber cable and collimator
+    - do calibration without them (just use a diafragm) in the other situation
+
+* This calibration is not important for absorbtion/transmittion measurements, as they rely on a relative information for with and without a sample under study
 
 (to be done with each of two diffraction gratings independently)

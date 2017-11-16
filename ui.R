@@ -113,6 +113,15 @@ shinyUI(fluidPage(
                  downloadButton("download_dt", "Download final data")
                  
                  ),
+        
+        tabPanel("Absorbance/Transmittance notes", value = 4, 
+                 h6("films"),
+                 h6("Beer-Lambert with cuvette https://www.chemguide.co.uk/analysis/uvvisible/beerlambert.html")),
+        tabPanel("Fluorescence notes"), 
+        tabPanel("Raman notes"), 
+        tabPanel("Source characterization notes"), 
+        
+        
         id = "conditionedPanels"
       )
       
