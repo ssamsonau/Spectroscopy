@@ -32,14 +32,18 @@ shinyServer(function(input, output) {
     names(values$sig_or) <- c("wavelength", "intensity")
     values$sig_or$type <- "signal"
   })
+
   
   raw_data <- reactive({
-    if(all(sapply("backg_or", function(x) is.null(values[[x]]))))
+    if(all(sapply(c("backg_or", "ref_or", "sig_or"),
+                  function(x) is.null(values[[x]]))))
       return()
     
     bind_rows(values$backg_or, values$ref_or, values$sig_or)
   })
-  
+
+
+    
   final_data <- reactive({
     if(is.null(raw_data()))
       return(NULL)
@@ -61,6 +65,20 @@ shinyServer(function(input, output) {
   
     dt <- raw_data()
     
+    # modifications according to calibration on tungsten lamp
+    correction_from_calibration <- compare_calibration_data() %>% filter(type == "correction_300") %>%
+      select(intensity_norm) %>% unlist()
+    
+    if(input$apply_collibration_correction){
+      dt <- dt %>%
+        group_by(type) %>%
+        mutate(intensity = ifelse(type != "background", 
+                                  intensity * correction_from_calibration , 
+                                  intensity)) %>%
+        ungroup()  
+    }
+    
+    
     if(!is.null(input$n_mirrors) & input$n_mirrors != 3){
       
       f <- read_convert_make_f("elements_data/silver_mirror_from_Metallic_Coating_Reflection_Data.csv",
@@ -73,7 +91,9 @@ shinyServer(function(input, output) {
       # if there is one less mirror - signal was reduced less than in calibration - multiply by 0.9
       dt <- dt %>%
         group_by(type) %>%
-        mutate(intensity = intensity / (f(wavelength))^(input$n_mirrors - 3) ) %>%
+        mutate(intensity = ifelse(type != "background", 
+                                  intensity / (f(wavelength))^(input$n_mirrors - 3) , 
+                                  intensity)) %>%
         ungroup()
     }
     
@@ -87,7 +107,9 @@ shinyServer(function(input, output) {
                   # transmission data: signal was larger than recieved one
                   dt <- dt %>%
                     group_by(type) %>%
-                    mutate(intensity = intensity / f(wavelength)) %>%
+                    mutate(intensity = ifelse(type != "background", 
+                                              intensity / f(wavelength), 
+                                              intensity)) %>%
                     ungroup()
                }
                )
@@ -225,5 +247,98 @@ shinyServer(function(input, output) {
     }
     paste( "Selected coordinates: ", xy_str(input$finalSpectrum_plot_hover))
   })
+  
+  
+  
+  ##################
+  
+  ################## Calibrate
+  compare_calibration_data <- reactive({
+    #browser()
+    
+    calibrate_signal_path <- ifelse(is.null(input$file_calibrate_signal),
+                                       "calibration/tungsten SLS201/Thorlabs_lamp_data_measured.csv",
+                                       input$file_calibrate_signal$datapath)
+    
+    calibr_signal <- readr::read_csv(calibrate_signal_path)
+    names(calibr_signal) <- c("wavelength", "intensity")
+    calibr_signal$type <- "measured"
+    
+    
+    calibrate_reference_path <- ifelse(is.null(input$file_calibrate_reference),
+                                       "calibration/tungsten SLS201/SLS201L_Spectrum.csv",
+                                       input$file_calibrate_reference$datapath)
+    
+    calibr_ref <- readr::read_csv(calibrate_reference_path) %>%
+      select(1:2)
+    names(calibr_ref) <- c("wavelength", "intensity")
+    
+    
+    
+    # match wavelength values
+    new_calibr_ref <- calibr_signal
+    new_calibr_ref$type <- "reference"
+    new_calibr_ref$intensity <- approx(x = calibr_ref$wavelength ,
+                                       y = calibr_ref$intensity, 
+                                       xout = calibr_signal$wavelength)$y
+    
+    
+    dt <- bind_rows(new_calibr_ref, calibr_signal) 
+    
+    dt <- dt %>%
+      group_by(type) %>%
+      select(wavelength, intensity, type) %>%
+      mutate(intensity_norm = intensity / max(intensity, na.rm = T)) %>%
+      ungroup()
+    
+    
+    #Calculate correction
+    dt_r <- dt %>%  filter(type == "reference") %>% select(wavelength, intensity_norm)
+    dt_m <- dt %>%  filter(type == "measured") %>% select(wavelength, intensity_norm)
+    
+    #browser()
+    
+    correction_300 <- tibble(
+      wavelength =  dt_m$wavelength, 
+      intensity_norm = dt_r$intensity_norm  / dt_m$intensity_norm
+    ) 
+
+    correction_300$type <- "correction_300"
+    
+    bind_rows(dt, correction_300)
+  })
+  
+  
+  output$calibration_plot <- renderPlot({
+    
+    
+    dt <- compare_calibration_data()
+    if(is.null(dt))
+      return()
+
+    if(input$calibration_see_corrected_on_plot){
+      correction_from_calibration <- dt %>% 
+        filter(type == "correction_300") %>%
+        select(intensity_norm) %>% unlist()
+      
+      dt <- dt %>%
+        mutate(intensity_norm = ifelse(type == "measured", 
+                                       intensity_norm * correction_from_calibration, 
+                                       intensity_norm)) %>%
+        mutate(type = stringr::str_replace_all(type, "measured", "measured and corrected"))
+    }
+    
+    
+    ggplot(dt) +
+      geom_line(aes(x = wavelength, y = intensity_norm, color = type)) +
+      ggtitle("Normalized by the maximum value for both signals. Red curve shows factor, by which measured signal should be multiplied. ")
+    #coord_cartesian(xlim = ranges_finalSpectrum_plot$x, 
+    #                ylim = ranges_finalSpectrum_plot$y, expand = FALSE) +
+    #xlab(paste0(names(finalSpectrum())[1], " (", ifelse(input$is_raman, "cm-1", "nm"), ")"))
+    
+    
+  })
 
 })
+
+
