@@ -57,7 +57,8 @@ shinyUI(fluidPage(
                                     choices = c("Absorbance/Transmittance",
                                                 "Fluorescence", 
                                                 "Raman", 
-                                                "Source characterization") 
+                                                "Source characterization",
+                                                "Thin film thickness measurement") 
                                     )
                        )
       
@@ -134,7 +135,7 @@ shinyUI(fluidPage(
                                   h4("Fluorescence")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Raman'",
-                                  h4("Raman")
+                                  includeMarkdown("notes/Raman.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Source characterization'",
                                   h4("Source characterization")

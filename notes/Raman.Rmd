@@ -1,0 +1,10 @@
+### Raman spectroscopy
+
+1. Use green laser
+2. Focus on sample with using of Thorlabs camera (use darkest ND filter)
+4. Take measurements for laser line (keep ND filter in path) - exactly what is excitation wavelength - 532 nm or something else. +/- 2 nm can change a lot for Raman
+3. Remove ND filter for actual measurements. Use green filter!
+5. Slit on 5 for good resolution
+6. Acquisition time on 1sec
+7. In live mode adjust focus of laser based on the signal strength detected by Andor camera
+8. Collect data (1 min, 5 min or longer)
