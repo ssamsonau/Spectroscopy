@@ -120,6 +120,11 @@ shinyServer(function(input, output) {
                  read_convert_make_f("optical_elements_data/DMLP425_data.csv", "nm")
                  #f(400)
                  # transmission data: signal was larger than recieved one
+               },
+               "50:50 (R:T) Plate Beamsplitter" = {
+                 read_convert_make_f("optical_elements_data/BSW10_data.csv", "nm")
+                 #f(400)
+                 # transmission data: signal was larger than recieved one
                }
                )
         

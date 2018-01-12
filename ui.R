@@ -59,11 +59,15 @@ shinyUI(fluidPage(
                        tags$br(),
                        tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3880&pn=NF533-17", 
                               "NF533-17"),
+                       tags$br(),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4807", 
+                              "BSW10R"),
                        checkboxGroupInput("elements", label = "Choose elements in the optical path from a specimen to camera", 
                                           choices = c("Longpass Dichroic Mirror, 425 nm Cutoff",
                                                       "Longpass Dichroic Mirror, 550 nm Cutoff", 
                                                       "Longpass Filter, 450 nm Cutoff", 
-                                                      "Notch Filter green, 533 nm")
+                                                      "Notch Filter green, 533 nm", 
+                                                      "50:50 (R:T) Plate Beamsplitter")
                        )
       ),
       conditionalPanel(condition="input.conditionedPanels==4",
