@@ -69,7 +69,7 @@ shinyServer(function(input, output) {
     correction_from_calibration <- compare_calibration_data() %>% filter(type == "correction_300") %>%
       select(intensity_norm) %>% unlist()
     
-    if(input$apply_collibration_correction){
+    if(input$apply_calibration_correction){
       dt <- dt %>%
         group_by(type) %>%
         mutate(intensity = ifelse(type != "background", 

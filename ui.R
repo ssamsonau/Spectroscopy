@@ -38,8 +38,8 @@ shinyUI(fluidPage(
                        fileInput("file_ref", "CSV File with reference (nm, signal)"),
                        fileInput("file_sig", "CSV File with signal (nm, signal)"),
                        
-                       checkboxInput("apply_collibration_correction", 
-                                     "Apply collibratin correction obtained in previous tab",
+                       checkboxInput("apply_calibration_correction", 
+                                     "Apply calibration correction obtained in previous tab",
                                      value = T),
                        tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903", 
                               "Silver mirrors"),
