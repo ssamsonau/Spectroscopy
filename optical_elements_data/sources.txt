@@ -1,0 +1,17 @@
+silver mirrors
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903
+
+NF533-17 (green notch)
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3880&pn=NF533-17
+
+FEL0450 (Longpass Filter, Cut-On Wavelength: 450 nm for blue)
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=918
+
+DMLP425R (dichroic mirror blue)
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3313
+
+DMLP550R (dichroic mirror green)
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3313
+
+BSW10R (50:50 (R:T) Plate Beamsplitters)
+https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4807

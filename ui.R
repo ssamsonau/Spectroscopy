@@ -41,14 +41,29 @@ shinyUI(fluidPage(
                        checkboxInput("apply_collibration_correction", 
                                      "Apply collibratin correction obtained in previous tab",
                                      value = T),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903", 
+                              "Silver mirrors"),
                        
                        numericInput("n_mirrors", "Specify a number of silver mirrors in the light path",
                                     value = 4),
                        
-                       h4("Additional optical Elements"),
+                       h4("Additional optical Elements:"),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3313", 
+                              "DMLP425R"),
+                       tags$br(),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3313", 
+                              "DMLP550R"),
+                       tags$br(),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=918", 
+                              "FEL0450"),
+                       tags$br(),
+                       tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3880&pn=NF533-17", 
+                              "NF533-17"),
                        checkboxGroupInput("elements", label = "Choose elements in the optical path from a specimen to camera", 
-                                          choices = c("dichroic mirror blue (not done)", "dichroic mirror green (not done)", 
-                                                      "notch filter blue", "notch filter green (not done)")
+                                          choices = c("Longpass Dichroic Mirror, 425 nm Cutoff",
+                                                      "Longpass Dichroic Mirror, 550 nm Cutoff", 
+                                                      "Longpass Filter, 450 nm Cutoff", 
+                                                      "Notch Filter green, 533 nm")
                        )
       ),
       conditionalPanel(condition="input.conditionedPanels==4",

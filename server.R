@@ -81,7 +81,7 @@ shinyServer(function(input, output) {
     
     if(!is.null(input$n_mirrors) & input$n_mirrors != 3){
       
-      f <- read_convert_make_f("elements_data/silver_mirror_from_Metallic_Coating_Reflection_Data.csv",
+      f <- read_convert_make_f("optical_elements_data/silver_mirror_from_Metallic_Coating_Reflection_Data.csv",
                                "um")
       #f(300)
       
@@ -100,19 +100,35 @@ shinyServer(function(input, output) {
       
     if(!is.null(input$elements))
       for(nn in input$elements){
-        switch(nn, 
-               "notch filter blue" = {
-                  f <- read_convert_make_f("elements_data/NF533-17_data.csv", "nm")
+        f <- switch(nn, 
+               "Notch Filter green, 533 nm" = {
+                  read_convert_make_f("optical_elements_data/NF533-17_data.csv", "nm")
                   #f(400)
                   # transmission data: signal was larger than recieved one
-                  dt <- dt %>%
-                    group_by(type) %>%
-                    mutate(intensity = ifelse(type != "background", 
-                                              intensity / f(wavelength), 
-                                              intensity)) %>%
-                    ungroup()
+               },
+               "Longpass Filter, 450 nm Cutoff" = {
+                 read_convert_make_f("optical_elements_data/FEL0450_data.csv", "nm")
+                 #f(400)
+                 # transmission data: signal was larger than recieved one
+               },
+               "Longpass Dichroic Mirror, 550 nm Cutoff" = {
+                 read_convert_make_f("optical_elements_data/DMLP550_data.csv", "nm")
+                 #f(400)
+                 # transmission data: signal was larger than recieved one
+               },
+               "Longpass Dichroic Mirror, 425 nm Cutoff" = {
+                 read_convert_make_f("optical_elements_data/DMLP425_data.csv", "nm")
+                 #f(400)
+                 # transmission data: signal was larger than recieved one
                }
                )
+        
+        dt <- dt %>%
+          group_by(type) %>%
+          mutate(intensity = ifelse(type != "background", 
+                                    intensity / f(wavelength), 
+                                    intensity)) %>%
+          ungroup()
       }
         
     dt
@@ -123,8 +139,8 @@ shinyServer(function(input, output) {
     if(is.null(final_data()))
       return()
     
-    ggplot(final_data()) +
-      geom_point(aes(x = wavelength, y = intensity, color = type)) +
+    ggplot(final_data(), aes(x = wavelength, y = intensity, color = type)) +
+      geom_point() +
       coord_cartesian(xlim = ranges_dataPlot$x, ylim = ranges_dataPlot$y, expand = FALSE)
     
   })
@@ -206,12 +222,14 @@ shinyServer(function(input, output) {
     if(is.null(dt))
       return()
     
-    ggplot(dt) +
-      geom_point(aes_string(x = names(dt)[1], y = names(dt)[2])) +
+    #browser()
+    
+    ggplot(dt, aes_string(x = names(dt)[1], y = names(dt)[2])) +
+      geom_point() +
+      geom_line(data=data.frame(spline(dt, n = 3 * nrow(dt))), aes(x = x, y = y)) +
       coord_cartesian(xlim = ranges_finalSpectrum_plot$x, 
                       ylim = ranges_finalSpectrum_plot$y, expand = FALSE) +
       xlab(paste0(names(finalSpectrum())[1], " (", ifelse(input$is_raman, "cm-1", "nm"), ")"))
-    
     
   })
   

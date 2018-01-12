@@ -6,5 +6,5 @@
 3. Remove ND filter for actual measurements. Use green filter!
 5. Slit on 5 for good resolution
 6. Acquisition time on 1sec
-7. In live mode adjust focus of laser based on the signal strength detected by Andor camera
+7. In live mode adjust focusing of laser (using objective position control knob) to make the signal detected by Andor camera stronger
 8. Collect data (1 min, 5 min or longer)
