@@ -259,6 +259,23 @@ shinyServer(function(input, output) {
         compare_signal$type <- "compare"  
         
         #browser()
+        new_y_scale <- dt %>% 
+          summarise(min_y = min(!!rlang::sym(names(dt[2]))), 
+                    max_y = max(!!rlang::sym(names(dt[2])))) %>%
+          unlist
+        
+        comp_y <- rlang::sym(names(dt[2]))
+      
+        old_y_scale <- compare_signal %>%
+          summarise(min_y = min(!!comp_y), max_y = max(!!comp_y)) %>%
+          unlist
+        
+        compare_signal <- compare_signal %>%
+          mutate(rlang::UQ(comp_y) := rlang::UQ(comp_y) - old_y_scale[1]) %>%
+          mutate(rlang::UQ(comp_y) := rlang::UQ(comp_y)/diff(old_y_scale) * diff(new_y_scale)) %>%
+          mutate(rlang::UQ(comp_y) := rlang::UQ(comp_y) + new_y_scale[1])
+        
+        #browser()
         dt <- bind_rows(dt, compare_signal)
       }
       

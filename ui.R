@@ -139,7 +139,7 @@ shinyUI(fluidPage(
                             hover = "finalSpectrum_plot_hover"),
                  verbatimTextOutput("finalSpectrum_plot_hover_text"),
                  fileInput("file_compare", 
-                           "CSV File with data of spectrum, used to compare (nm, signal)", 
+                           "CSV File with data of spectrum, used to compare (nm, signal). This data will be rescaled to fit the same y range", 
                            width = "100%"),
                  h4("Table with data"),
                  DT::dataTableOutput("finalSpectrum_dt"),
