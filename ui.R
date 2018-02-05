@@ -103,6 +103,7 @@ shinyUI(fluidPage(
                  h4("Raw data with modifications corresponding to specified optical elements in path"),
                  h5("To magnify: Select area and double-click."),
                  actionButton("dataPlot_reset_but", "Reset Magnification"),
+                 actionButton("dataPlot_rescale_but", "Rescale y-Axis for data"),
                  plotOutput("dataPlot", 
                             brush = brushOpts(
                               id = "dataPlot_brush",
@@ -128,6 +129,7 @@ shinyUI(fluidPage(
                  
                  h5("To magnify: Select area and double-click."),
                  actionButton("finalSpectrum_plot_reset_but", "Reset Magnification"),
+                 actionButton("finalSpectrum_plot_rescale_but", "Rescale y-Axis for data"),
                  plotOutput("finalSpectrum_plot",
                             brush = brushOpts(
                               id = "finalSpectrum_plot_brush",
@@ -136,6 +138,9 @@ shinyUI(fluidPage(
                             dblclick = "finalSpectrum_plot_dblclick", 
                             hover = "finalSpectrum_plot_hover"),
                  verbatimTextOutput("finalSpectrum_plot_hover_text"),
+                 fileInput("file_compare", 
+                           "CSV File with data of spectrum, used to compare (nm, signal)", 
+                           width = "100%"),
                  h4("Table with data"),
                  DT::dataTableOutput("finalSpectrum_dt"),
                  h4("Save final data to file"),

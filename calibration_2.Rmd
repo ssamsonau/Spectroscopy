@@ -7,7 +7,8 @@
     
     
 * One of the approaches to account for that is to do calibration using tungsten lamp
-    - [link 1](https://publiclab.org/notes/wiebew/12-30-2012/spectrometer-calibration)
+    - [link 1](https://publiclab.org/notes/wiebew/12-30-2012/spectrometer-calibration), 
+    [link 1.2](http://eprints.lancs.ac.uk/6736/1/inproc_326.pdf)
     - [link 2](http://eprints.lancs.ac.uk/6736/1/inproc_326.pdf)
     
 * We have SLS201 light source from Thorlabs (with tugsten-halogen bulb inside). 

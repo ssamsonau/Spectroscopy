@@ -44,7 +44,7 @@ shinyServer(function(input, output) {
 
 
     
-  final_data <- reactive({
+  combined_data <- reactive({
     if(is.null(raw_data()))
       return(NULL)
     
@@ -141,10 +141,10 @@ shinyServer(function(input, output) {
   
   output$dataPlot <- renderPlot({
     
-    if(is.null(final_data()))
+    if(is.null(combined_data()))
       return()
     
-    ggplot(final_data(), aes(x = wavelength, y = intensity, color = type)) +
+    ggplot(combined_data(), aes(x = wavelength, y = intensity, color = type)) +
       geom_point() +
       coord_cartesian(xlim = ranges_dataPlot$x, ylim = ranges_dataPlot$y, expand = FALSE)
     
@@ -167,6 +167,18 @@ shinyServer(function(input, output) {
     ranges_dataPlot$y <- NULL
   })
   
+  observeEvent(input$dataPlot_rescale_but, {
+    x_name <- rlang::sym(names(combined_data())[1])
+    y_name <- rlang::sym(names(combined_data())[2])
+    
+    new_y_lim <- combined_data() %>%
+      filter(between(!!x_name, ranges_dataPlot$x[1], ranges_dataPlot$x[2])) %>%
+      summarise(max = max(!!y_name), min = min(!!y_name)) %>%
+      unlist
+    
+    ranges_dataPlot$y <- new_y_lim
+  })
+  
   ranges_finalSpectrum_plot <- reactiveValues(x = NULL, y = NULL)
   
   observeEvent(input$finalSpectrum_plot_dblclick, {
@@ -184,39 +196,73 @@ shinyServer(function(input, output) {
     ranges_finalSpectrum_plot$y <- NULL
   })
   
-  finalSpectrum <- eventReactive(input$calculate, {
+  observeEvent(input$finalSpectrum_plot_rescale_but, {
     #browser()
+    x_name <- rlang::sym(names(finalSpectrum())[1])
+    y_name <- rlang::sym(names(finalSpectrum())[2])
     
-    wl <- final_data()$wavelength
+    new_y_lim <- finalSpectrum() %>%
+      filter(between(!!x_name, ranges_finalSpectrum_plot$x[1], ranges_finalSpectrum_plot$x[2])) %>%
+      summarise(max = max(!!y_name), min = min(!!y_name)) %>%
+      unlist
     
-    backg <- final_data() %>%
-      filter(type == "background") %>%
-      select(intensity) %>% unlist 
+    ranges_finalSpectrum_plot$y <- new_y_lim
+  })
+  
+  
+  finalSpectrum <- reactive({
+    #browser()
+    input$calculate
+    input$file_compare
     
-    ref <- final_data() %>%
-      filter(type == "reference") %>%
-      select(intensity) %>% unlist 
-    
-    sig <- final_data() %>%
-      filter(type == "signal") %>%
-      select(intensity) %>% unlist 
-    
-    res <- eval(parse(text = input$formula_text))
-
-    # only needed part of wl 
-    wl <- wl[seq_along(res)]
-    
-    if(input$is_raman){
-      dt <- tibble(
-        RamanShift = ((1/input$laser_wavelength) - (1/wl))*1E7,
-        Intensity = res
-      )
-    }else{
-      dt <- tibble(
-        wavelength = wl,
-        Intensity = res
-      )
-    }
+    isolate({
+      
+      wl <- combined_data()$wavelength
+      
+      backg <- combined_data() %>%
+        filter(type == "background") %>%
+        select(intensity) %>% unlist 
+      
+      ref <- combined_data() %>%
+        filter(type == "reference") %>%
+        select(intensity) %>% unlist 
+      
+      sig <- combined_data() %>%
+        filter(type == "signal") %>%
+        select(intensity) %>% unlist 
+      
+      res <- eval(parse(text = input$formula_text))
+      
+      # only needed part of wl 
+      wl <- wl[seq_along(res)]
+      
+      if(input$is_raman){
+        dt <- tibble(
+          RamanShift = ((1/input$laser_wavelength) - (1/wl))*1E7,
+          Intensity = res
+        )
+      }else{
+        dt <- tibble(
+          wavelength = wl,
+          Intensity = res
+        )
+      }
+      
+      dt$type <- rep("Final Spectrum", nrow(dt))
+      
+      if(!is.null(input$file_compare)){
+        #browser()
+        compare_signal_path <- input$file_compare$datapath
+        
+        compare_signal <- readr::read_csv(compare_signal_path)
+        names(compare_signal) <- c(names(dt)[1], names(dt)[2])
+        compare_signal$type <- "compare"  
+        
+        #browser()
+        dt <- bind_rows(dt, compare_signal)
+      }
+      
+    })
     
     dt
   })
@@ -225,17 +271,19 @@ shinyServer(function(input, output) {
     
     dt <- finalSpectrum()
     if(is.null(dt))
-      return()
+      return(NULL)
+    dt_for_fitting <- dt %>% filter(type == "Final Spectrum")
     
-    #browser()
-    
-    ggplot(dt, aes_string(x = names(dt)[1], y = names(dt)[2])) +
+    p <- ggplot(dt, aes_string(x = names(dt)[1], y = names(dt)[2], color = "type")) +
       geom_point() +
-      geom_line(data=data.frame(spline(dt, n = 3 * nrow(dt))), aes(x = x, y = y)) +
+      geom_line(data=data.frame(spline(dt_for_fitting, n = 3 * nrow(dt_for_fitting)), 
+                                "type" = rep("Spline fit", 3 * nrow(dt_for_fitting))), 
+                aes(x = x, y = y, color = type)) +
       coord_cartesian(xlim = ranges_finalSpectrum_plot$x, 
                       ylim = ranges_finalSpectrum_plot$y, expand = FALSE) +
       xlab(paste0(names(finalSpectrum())[1], " (", ifelse(input$is_raman, "cm-1", "nm"), ")"))
     
+    p
   })
   
   output$finalSpectrum_dt <- DT::renderDataTable({

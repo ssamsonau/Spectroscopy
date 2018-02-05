@@ -1,5 +1,7 @@
 ### Raman spectroscopy
 
+Note: you can use fluorescence target with known fluorescence spectra, as a way to calibrate wavlenght intensity accsross the whole spectrum.
+
 1. Use green laser
 2. Focus on sample with using of Thorlabs camera (use darkest ND filter)
 4. Take measurements for laser line (keep ND filter in path) - exactly what is excitation wavelength - 532 nm or something else. +/- 2 nm can change a lot for Raman
