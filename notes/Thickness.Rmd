@@ -1,0 +1,11 @@
+### Thickness of thin films
+
+Some theory references:
+
+  * https://www.sciencedirect.com/science/article/pii/0040609085902731
+  * https://www.physics.rutgers.edu/~podzorov/technical%20notes%20on%20thickness%20measurements_020114.pdf
+  * https://www.researchgate.net/post/How_to_calculate_thin_film_thickness_from_UV-VIS-NIR_spectrometer_interference_data
+  * https://www.perkinelmer.com/CMSResources/Images/44-153901APP_Thin-films.pdf
+  * https://www.shimadzu.com/an/uv/support/uv/ap/film.html
+  * https://wcam.engr.wisc.edu/Public/Tools/Analysis/Filmetrics%20F20%20technical%20reference.pdf
+  

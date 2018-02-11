@@ -1,0 +1,32 @@
+### General considerations
+
+__Absorption__
+
+When light is passing through a material, energy of light can be absorbed.     [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm)
+
+  * Electrons are promoted to higher orbitals by _ultraviolet or visible light_
+  * vibrations are excited by _infrared light_
+  * rotations are excited by _microwaves_
+  * more options - see this [link](https://www.chem.uci.edu/~dmitryf/manuals/Fundamentals/Fluorescence%20Spectroscopy.pdf)
+
+
+__Scattering__
+
+When electromagnetic radiation passes through matter, most of the radiation continues in its original direction but a small fraction is scattered in other directions. [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm)
+
+  * _Rayleigh scattering:_ Light that is scattered at the same wavelength as the incoming light is called _Rayleigh scattering_. (See why [sky is blue](http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html))
+  * _Brillouin scattering:_ Light that is scattered in transparent solids due to vibrations (phonons) is called _Brillouin scattering:_ Brillouin scattering is typically shifted by 0.1 to 1 cm-1 from the incident light.     
+  * _Raman scattering:_ Light that is scattered due to vibrations in molecules or optical phonons in solids is called _Raman scattering_. Raman scattered light is shifted by as much as 4000 cm-1 from the incident light.   
+
+
+__Emission__
+
+Atoms or molecules that are excited to high energy levels can decay to lower levels by emitting radiation (emission or luminescence). [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm)
+
+  * For atoms excited by a _high-temperature energy source_ this light emission is commonly called atomic or optical emission
+  * for atoms excited with light it is called atomic fluorescence
+  * For molecules
+      - it is called fluorescence if the transition is between states of the same spin 
+      - phosphorescence if the transition occurs between states of different spin.
+  * Electroluminescence is describing an emission of light in a repsonse to electricity (for example LED)
+      
