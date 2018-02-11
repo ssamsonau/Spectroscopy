@@ -19,3 +19,4 @@ __Cuvette use:__
   2. Put sample in cuvvete (liquid, particles in liquid, colloids, powders)
   3. Take background spectum with empty quvette at 90 degree exit
   5. Take spectrum at 90 degree exit with filled quvette
+  

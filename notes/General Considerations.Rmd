@@ -12,11 +12,20 @@ When light is passing through a material, energy of light can be absorbed.     [
 
 __Scattering__
 
-When electromagnetic radiation passes through matter, most of the radiation continues in its original direction but a small fraction is scattered in other directions. [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm)
+When electromagnetic radiation passes through matter, most of the radiation continues in its original direction but a small fraction is scattered in other directions. [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm), [source 2](http://pages.mtu.edu/~scarn/teaching/GE4250/scattering_lecture_slides.pdf)
 
-  * _Rayleigh scattering:_ Light that is scattered at the same wavelength as the incoming light is called _Rayleigh scattering_. (See why [sky is blue](http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html))
-  * _Brillouin scattering:_ Light that is scattered in transparent solids due to vibrations (phonons) is called _Brillouin scattering:_ Brillouin scattering is typically shifted by 0.1 to 1 cm-1 from the incident light.     
-  * _Raman scattering:_ Light that is scattered due to vibrations in molecules or optical phonons in solids is called _Raman scattering_. Raman scattered light is shifted by as much as 4000 cm-1 from the incident light.   
+  * _Elastic (Rayleigh, Mie, Geometric reflections) scattering:_ Light that is scattered at the same wavelength as the incoming light
+    - Rayleigh scattering results from the electric polarizability of the particles. The oscillating electric field of a light wave acts on the charges within a particle, causing them to move at the same frequency. The particle therefore becomes a small radiating dipole whose radiation we see as scattered light. [wiki](https://en.wikipedia.org/wiki/Rayleigh_scattering)
+    - Rayleigh makes [sky blue](http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html)
+    - Mie makes [clouds white](http://ww2010.atmos.uiuc.edu/(Gl)/guides/mtr/opt/mch/sct/mie.rxml)
+    - [Parameters governing scattering](http://pages.mtu.edu/~scarn/teaching/GE4250/scattering_lecture_slides.pdf) - See pp. 7-10 for info on how size of particle will show which description to use Rayleigh, Mie, or Geometric.
+        - [more info on scattering by small particles (Rayleigh vs Mie) ](http://www.phys.ufl.edu/courses/phy4422/spring10/Reports/Light%20Scattering%20by%20Small%20Particles.pdf)
+    - For nanoparticles surface plasmons can be excited leading to optical resonance phenomena ([link](https://www.nature.com/articles/lsa201460)).
+    - [While drawing the Sun, should you color it in green?](http://solar-center.stanford.edu/SID/activities/GreenSun.html)
+  * _Inelastic (Raman, fluorescence) scattering:_ Light that is scattered due to vibrations in molecules or optical phonons in solids is called _Raman scattering_. Raman scattered light is shifted by as much as 4000 cm-1 from the incident light.
+  * _Quasi-elastic (Brillouin) scattering:_ (think about Doppler effect) Light that is scattered in transparent solids due to vibrations (phonons) is called _Brillouin scattering:_ Brillouin scattering is typically shifted by 0.1 to 1 cm-1 from the incident light.     
+    - [some info](http://www.soest.hawaii.edu/HIGP/Faculty/zinin/Zi-Brillouin.html)
+   
 
 
 __Emission__
@@ -30,3 +39,11 @@ Atoms or molecules that are excited to high energy levels can decay to lower lev
       - phosphorescence if the transition occurs between states of different spin.
   * Electroluminescence is describing an emission of light in a repsonse to electricity (for example LED)
       
+
+__Diffusive reflection__
+
+* https://en.wikipedia.org/wiki/Diffuse_reflection
+
+* Albedo (Latin albedo, "whiteness") is the measure of diffusive reflection of radiation out of the total radiation received by a body ([wiki](https://en.wikipedia.org/wiki/Albedo))
+
+
