@@ -76,11 +76,13 @@ shinyUI(fluidPage(
       conditionalPanel(condition="input.conditionedPanels==4",
                        radioButtons("notes_type", 
                                     "Measurement", 
-                                    choices = c("Absorbance/Transmittance",
+                                    choices = c(
+                                      "General Considerations",
+                                      "Transmittance, Extinction",
                                                 "Fluorescence", 
                                                 "Raman", 
                                                 "Source characterization",
-                                                "Thin film thickness measurement") 
+                                                "Thickness") 
                                     )
                        )
       
@@ -153,16 +155,20 @@ shinyUI(fluidPage(
         
        
         tabPanel("Applications notes", value = 4,
-                 conditionalPanel(condition="input.notes_type == 'Absorbance/Transmittance'",
-                                  h6("films"),
-                                  h6("Beer-Lambert with cuvette https://www.chemguide.co.uk/analysis/uvvisible/beerlambert.html")
-                                  ),
-                 
-                 conditionalPanel(condition="input.notes_type == 'Fluorescence'",
-                                  h4("Fluorescence")
-                 ),
                  conditionalPanel(condition="input.notes_type == 'Raman'",
                                   includeMarkdown("notes/Raman.Rmd")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Thickness'",
+                                  includeMarkdown("notes/Thickness.Rmd")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Transmittance, Extinction'",
+                                  withMathJax(includeMarkdown("notes/Transmittance, Extinction.Rmd"))
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Fluorescence'",
+                                  includeMarkdown("notes/Fluorescence.Rmd")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'General Considerations'",
+                                  includeMarkdown("notes/General Considerations.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Source characterization'",
                                   h4("Source characterization")

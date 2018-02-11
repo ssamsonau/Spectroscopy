@@ -1,20 +1,22 @@
 ### Fluorescence
 
 
-_Sample stage use:_
-1. Use blue laser
-1. Use blue mirror
-2. Focus on sample with using of Thorlabs camera (use darkest ND filter)
-4. Take measurements for laser line (keep ND filter in path) - exactly what is excitation wavelength - 405 nm or something else. +/- 2 nm can change a lot for Raman
-3. Remove ND filter for actual measurements. Use blue filter!
-5. Slit on 5 for good resolution
-6. Acquisition time can be low for strong signals (0.01-0.1 sec)
-7. In live mode adjust focusing of laser (using objective position control knob) to make the signal detected by Andor camera stronger
-8. Collect data
+__Sample stage use:__
+
+  1. Use blue laser
+  1. Use blue mirror
+  2. Focus on sample with using of Thorlabs camera (use darkest ND filter)
+  4. Take measurements for laser line (keep ND filter in path) - exactly what is excitation wavelength - 405 nm or something else. +/- 2 nm can change a lot for Raman
+  3. Remove ND filter for actual measurements. Use blue filter!
+  5. Slit on 5 for good resolution
+  6. Acquisition time can be low for strong signals (0.01-0.1 sec)
+  7. In live mode adjust focusing of laser (using objective position control knob) to make the signal detected by Andor camera stronger
+  8. Collect data
 
 
-_Cuvette use:_
-1. Use blue laser. Direct it to a cuvvete entrance
-2. Put sample in cuvvete (liquid, particles in liquid, colloids, powders)
-3. Take background spectum with empty quvette at 90 degree exit
-5. Take spectrum at 90 degree exit with filled quvette
+__Cuvette use:__
+
+  1. Use blue laser. Direct it to a cuvvete entrance
+  2. Put sample in cuvvete (liquid, particles in liquid, colloids, powders)
+  3. Take background spectum with empty quvette at 90 degree exit
+  5. Take spectrum at 90 degree exit with filled quvette
