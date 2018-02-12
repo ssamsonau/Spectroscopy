@@ -53,9 +53,9 @@ From that $$\varepsilon = \frac{A}{c d}$$
 
 _When using cuvette and colloidal solution (or another similar situtaion):_   
 Let say you have a colloidal solution of particles in a reference liquid. 
-An equation representing absorption of a sample (particles) would be calculated as a difference between absorption of liquid+particles and just liquid
+An equation representing absorption of a sample (particles) would be calculated from trasmission loses due to sample part (Trasmission losses of liqued+particles - trasmission losses of liquid) 
 
-$$A_{sample} = -log10(It/Io) - (-log(Ir/Io)) = log(Ir/It)$$
+$$A_{sample} = -log10(Ir/Io - It/Io)$$
 
 
 #### Some relevant info:
