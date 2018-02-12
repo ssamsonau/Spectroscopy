@@ -42,13 +42,16 @@ __Extinction is defined as:__
 $$E = log_{10}(Io/It) = log_{10}(1/T) = -log_{10}(T)$$
 
 _In case there is no scattering (or it is negligible) - Extinction is equal to Absorption:_
-$$A=-log_{10}(T)$$
-__If you are using a quvette:__       
-Beer-Lambert's law: $$I = Io * e^{-\varepsilon c d}$$    
-where c is the concentration of the absorbing material and d is the distance that the light has to travel in that given material.
 
-From that $$\varepsilon = \frac{A}{c d}$$
+[link](http://sydney.edu.au/science/molecular_bioscience/PHAR2811/Spectrophotometry/Spectrophotometry.ppt%2018.07.08.ppt): Intensity of light decaying exponentially: $$T = \frac{It}{Io} = e^{-\alpha c d}$$, where $\alpha$ is an extinction constant, $c$ is concentration and $d$ is light path length
 
+Taking log on both parts: $$ Ln( \frac{Io}{It})={\alpha c d}$$
+Converting to log10 (as absorption usually defined and reported in 10 base):
+$$ Log10( \frac{Io}{It})={\varepsilon c d}$$
+
+Now defining absorbance as 
+
+$$A=-log_{10}(T)$$, we have Beer-Lambert's law: $$A = \varepsilon c d$$
 
 
 _When using cuvette and colloidal solution (or another similar situtaion):_   
@@ -60,6 +63,7 @@ $$A_{sample} = -log10(Ir/Io - It/Io)$$
 
 #### Some relevant info:
 
+* http://sydney.edu.au/science/molecular_bioscience/PHAR2811/Spectrophotometry/Spectrophotometry.ppt%2018.07.08.ppt
 * https://en.wikipedia.org/wiki/Absorption_spectroscopy
 * https://chemistry.stackexchange.com/questions/33187/difference-between-absorption-spectroscopy-and-extinction-spectroscopy
 * https://pubs.acs.org/doi/abs/10.1021/jp309272b
