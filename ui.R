@@ -145,6 +145,9 @@ shinyUI(fluidPage(
                             ),
                             dblclick = "finalSpectrum_plot_dblclick", 
                             hover = "finalSpectrum_plot_hover"),
+                 uiOutput("spline_n_ui"),
+                 checkboxInput("hide_dots", "Hide data points" , value = F),
+                 
                  verbatimTextOutput("finalSpectrum_plot_hover_text"),
                  fileInput("file_compare", 
                            "CSV File with data of spectrum, used to compare (nm, signal). This data will be rescaled to fit the same y range", 
