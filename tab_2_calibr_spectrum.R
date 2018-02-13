@@ -75,8 +75,11 @@ output$calibration_plot <- renderPlot({
   }
   
   
-  ggplot(dt) +
-    geom_line(aes(x = wavelength, y = intensity_norm, color = type)) +
+  ggplot(dt, aes(x = wavelength, y = intensity_norm)) +
+    stat_wb_column(data = dt %>% filter(type == "measured"), w.band = VIS_bands(), alpha = 0.4) +
+    scale_fill_identity()+
+    geom_line(aes(color = type)) +
+    
     ggtitle("Normalized by the maximum value for both signals. Red curve shows factor, by which measured signal should be multiplied. ")
   #coord_cartesian(xlim = ranges_finalSpectrum_plot$x, 
   #                ylim = ranges_finalSpectrum_plot$y, expand = FALSE) +

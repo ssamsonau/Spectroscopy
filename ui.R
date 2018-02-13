@@ -9,6 +9,9 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 library(tidyverse)
+library(ggspectra)
+library(photobiology)
+library(photobiologyWavebands)
 
 shinyUI(fluidPage(
 

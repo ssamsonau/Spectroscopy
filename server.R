@@ -9,16 +9,41 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 library(tidyverse)
+library(ggspectra)
+library(photobiology)
+library(photobiologyWavebands)
 
 shinyServer(function(input, output) {
 
   values <- reactiveValues()
   
   observeEvent(input$file_backg, {
+    
     #browser()
-    values$backg_or <- readr::read_csv(input$file_backg$datapath)
-    names(values$backg_or) <- c("wavelength", "intensity")
-    values$backg_or$type <- "background"
+    tryCatch({
+      values$backg_or <- readr::read_csv(input$file_backg$datapath) 
+    }, error = function(e) {
+      showModal(modalDialog(
+        title = "Error",
+        "Something is wrong with a file"
+      ))  
+      values$backg_or <- NULL
+      }
+    )
+    
+    if(ncol(values$backg_or) != 2){
+      showModal(modalDialog(
+        title = "Error",
+        "Something is wrong with a file"
+      ))
+      values$backg_or <- NULL
+    }
+    
+    if(!is.null( values$backg_or)){
+      names(values$backg_or) <- c("wavelength", "intensity")
+      values$backg_or$type <- "background"  
+    } 
+    
   })
   
   observeEvent(input$file_ref, {
@@ -145,8 +170,11 @@ shinyServer(function(input, output) {
       return()
     
     ggplot(combined_data(), aes(x = wavelength, y = intensity, color = type)) +
+      stat_wb_column(data = combined_data() %>% 
+                       filter(type == "signal"), w.band = VIS_bands(), alpha = 0.4) +
+      scale_fill_identity()+
       geom_point() +
-      coord_cartesian(xlim = ranges_dataPlot$x, ylim = ranges_dataPlot$y, expand = FALSE)
+      coord_cartesian(xlim = ranges_dataPlot$x, ylim = ranges_dataPlot$y, expand = FALSE) 
     
   })
   
