@@ -1,5 +1,11 @@
 #### General considerations
 
+__How spectrometer works__
+
+* [Great video!](https://www.spectroscopytv.com/how-does-a-spectrometer-work-inside-the-ocean-optics-optical-bench/)
+
+* [Many other great videos about spectroscopy](https://www.spectroscopytv.com/category/tutorials/)
+
 __Absorption__
 
 When light is passing through a material, energy of light can be absorbed.     [source](http://life.nthu.edu.tw/~labcjw/BioPhyChem/Spectroscopy/spectros.htm)

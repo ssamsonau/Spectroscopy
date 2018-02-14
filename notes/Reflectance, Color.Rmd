@@ -17,7 +17,7 @@ connect light source by fiber cable to a collimator. Then position collimator to
 * Take spectrum with a sample of interest in place (the same distance from fiber cables)
 * Calculate reflectance spectrum of a surface under study as (signal from surface)/(signal from white standard)
 
-### Diffuse reflection, Albedo
+### Diffuse reflection, Albedo, Color
 
 * https://en.wikipedia.org/wiki/Diffuse_reflection
 
@@ -29,8 +29,9 @@ connect light source by fiber cable to a collimator. Then position collimator to
 
 * [theory](http://nvlpubs.nist.gov/nistpubs/jres/80A/jresv80An4p567_A1b.pdf)
 
+_Video of reflection measurements_ [here](https://www.spectroscopytv.com/perform-a-reflectance-spectroscopy-measurement/)
 
-#### Diffisive color and Albedo, Measurement
+#### Color, Diffisive reflection, Albedo, Measurement
 
 * Use stand with fiber connectors. 
 * -45 to top geometry. Or even off-reflection-plane
