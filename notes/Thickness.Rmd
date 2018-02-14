@@ -1,6 +1,17 @@
 ### Thickness of thin films
 
-Some theory references:
+Measurements can be done in Reflection/Backscatter geometry, or in -45 to +45 degrees position 
+
+* Use stand with fiber connectors. 
+* -45 to + 45 geometry
+    - Fiber from lamp connects to one connector (let say -45 degree)
+    - Second fiber is connected to +45 degree. The other end is connected to collimator and directed toward the scpectrometer
+* Reflection/Backscatter geometry
+    - Use Reflection/Backscatter Probe (we have [Thorlabs RP 20](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7794))
+    - [see proper conenction](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7794))
+
+
+#### For interpretaion - see theory and examples:
 
   * https://www.sciencedirect.com/science/article/pii/0040609085902731
   * https://www.physics.rutgers.edu/~podzorov/technical%20notes%20on%20thickness%20measurements_020114.pdf

@@ -39,26 +39,3 @@ Atoms or molecules that are excited to high energy levels can decay to lower lev
       - phosphorescence if the transition occurs between states of different spin.
   * Electroluminescence is describing an emission of light in a repsonse to electricity (for example LED)
       
-
-__Reflection__
-
-_Specular (mirror like)_
-
-_Diffuse reflection_
-
-* https://en.wikipedia.org/wiki/Diffuse_reflection
-
-* Albedo (Latin albedo, "whiteness") is the measure of diffusive reflection of radiation out of the total radiation received by a body ([wiki](https://en.wikipedia.org/wiki/Albedo))
-
-* Integrating sphere - see Fig. 14 [here](http://mmrc.caltech.edu/FTIR/Literature/Reflectance%20IR%20Khoshhesab.pdf)
-
-* [theory](http://nvlpubs.nist.gov/nistpubs/jres/80A/jresv80An4p567_A1b.pdf)
-
-__General links__
-
-* https://www.researchgate.net/file.PostFileLoader.html?id=57d5ac92f7b67e05927eb848&assetKey=AS%3A405210573885440%401473621138023
-
-
-_Internal reflection_
-
-* http://mmrc.caltech.edu/FTIR/Literature/Reflectance%20IR%20Khoshhesab.pdf

@@ -1,6 +1,6 @@
 ### Raman spectroscopy
 
-__Sample stage use:__
+__Sample stage (under the objective) use:__
 
   1. Use green or blue laser
   1. Use green or blue mirror
@@ -20,3 +20,7 @@ __Cuvette use:__
   3. Take background spectum with empty quvette at 90 degree exit
   5. Take spectrum at 90 degree exit with filled quvette
   
+__Fiber optics probe use:__
+
+1. See procedure for reflection and adjust accordingly
+2. In this case however, light from sample should be collected by an integrating sphere, instead of using the collimator - collimator (and fiber itself) refracts different colors differently, thus if used directly it will modify the spectrum under study. 

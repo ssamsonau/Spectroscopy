@@ -1,3 +1,19 @@
+read_convert_make_f <- function(file_path, wl_unit){
+  #browser()
+  modification <- readr::read_csv(file_path)      
+  names(modification) <- c("wavelength", "percentages")
+  #range(modification$wavelength, na.rm = T)
+  
+  # in file it is in percentage - convert to fraction
+  if(wl_unit == "um")
+    f <- approxfun(x = modification$wavelength * 1000, y = modification$percentages/100)
+  if(wl_unit == "nm")
+    f <- approxfun(x = modification$wavelength, y = modification$percentages/100)  
+  
+  f
+}
+
+
 ################## Calibrate
 compare_calibration_data <- reactive({
   #browser()
@@ -17,7 +33,16 @@ compare_calibration_data <- reactive({
   
   calibr_ref <- readr::read_csv(calibrate_reference_path) %>%
     select(1:2)
+  
   names(calibr_ref) <- c("wavelength", "intensity")
+  
+  if(input$fiber_correction){
+    # adjust to fiber cable
+    f <- read_convert_make_f("calibration/fiber transmission in percents (obtained as ratio of 2 fiber signal over 1 fiber signal).csv", "nm")
+    
+    calibr_ref <- calibr_ref %>%
+      mutate(intensity = intensity * f(wavelength))  # how fiber will reduce intersity based on transmission
+  }
   
   
   
@@ -27,7 +52,6 @@ compare_calibration_data <- reactive({
   new_calibr_ref$intensity <- approx(x = calibr_ref$wavelength ,
                                      y = calibr_ref$intensity, 
                                      xout = calibr_signal$wavelength)$y
-  
   
   dt <- bind_rows(new_calibr_ref, calibr_signal) 
   
@@ -44,14 +68,14 @@ compare_calibration_data <- reactive({
   
   #browser()
   
-  correction_300 <- tibble(
+  correction_factor <- tibble(
     wavelength =  dt_m$wavelength, 
     intensity_norm = dt_r$intensity_norm  / dt_m$intensity_norm
   ) 
   
-  correction_300$type <- "correction_300"
+  correction_factor$type <- "correction_factor"
   
-  bind_rows(dt, correction_300)
+  bind_rows(dt, correction_factor)
 })
 
 
@@ -64,7 +88,7 @@ output$calibration_plot <- renderPlot({
   
   if(input$calibration_see_corrected_on_plot){
     correction_from_calibration <- dt %>% 
-      filter(type == "correction_300") %>%
+      filter(type == "correction_factor") %>%
       select(intensity_norm) %>% unlist()
     
     dt <- dt %>%

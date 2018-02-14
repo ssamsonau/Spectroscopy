@@ -22,17 +22,12 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       
-      conditionalPanel(condition="input.conditionedPanels==1",
-                       includeMarkdown("calibration_1.Rmd")
-                       ),
+      # conditionalPanel(condition="input.conditionedPanels==1",
+      #                  includeMarkdown("calibration_1.Rmd")
+      #                  ),
       conditionalPanel(condition="input.conditionedPanels==2",
                        
-                       includeMarkdown("calibration_2.Rmd"),
-                       
-                       fileInput("file_calibrate_reference", 
-                                 "CSV File with data for calibration - Reference (nm, signal)"),
-                       fileInput("file_calibrate_signal", 
-                                 "CSV File - Collected (nm, signal)")
+                       includeMarkdown("calibration_2.Rmd")
       ),
       
  
@@ -48,8 +43,8 @@ shinyUI(fluidPage(
                        #        "Silver mirrors"),
                        
                        ## Specify a number of silver mirrors in the light path
-                       numericInput("n_mirrors", "",
-                                    value = 4),
+                       # numericInput("n_mirrors", "",
+                       #              value = 4),
                        
                        # h4("Additional optical Elements:"),
                        # tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3313", 
@@ -85,6 +80,7 @@ shinyUI(fluidPage(
                                                 "Fluorescence", 
                                                 "Raman", 
                                                 "Source characterization",
+                                                "Reflectance, Color",
                                                 "Thickness") 
                                     )
                        )
@@ -101,7 +97,19 @@ shinyUI(fluidPage(
                  ),
         
         tabPanel("Calibrate spectum shape", value = 2,
+                 h4(""), 
+                 fileInput("file_calibrate_reference", 
+                           "CSV File with data for calibration - Reference (nm, signal)", 
+                           width = "100%"),
                  
+                 checkboxInput("fiber_correction", 
+                               "Apply correction to reference signal, 
+                               based on absorption of fiber optics cable 
+                               (Expected value after fiber cable will decrease, 
+                               comparing to rated values for lamp)",
+                               value = F, width = "100%"),
+                 fileInput("file_calibrate_signal", 
+                           "CSV File - Collected (nm, signal)", width = "100%"),
                  plotOutput("calibration_plot"), 
                  checkboxInput("calibration_see_corrected_on_plot", 
                                "See corrected signal on plot")
@@ -163,6 +171,9 @@ shinyUI(fluidPage(
         tabPanel("Applications notes", value = 4,
                  conditionalPanel(condition="input.notes_type == 'Raman'",
                                   includeMarkdown("notes/Raman.Rmd")
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Reflectance, Color'",
+                                  includeMarkdown("notes/Reflectance, Color.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Thickness'",
                                   includeMarkdown("notes/Thickness.Rmd")

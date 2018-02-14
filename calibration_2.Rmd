@@ -12,15 +12,17 @@
 * There are many ways to address this type of calibration. See this [link](http://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7458.pdf) for various options.    
     
 * One of the approaches to account for that is to do calibration using tungsten lamp
-    - [link 1](http://eprints.lancs.ac.uk/6736/1/inproc_326.pdf)
-    - [link 2](http://www.pro-lite.co.uk/File/blog_driving_calibration_lamp.php)
+    - [link 1](http://eprints.lancs.ac.uk/6736/1/inproc_326.pdf), 
+    [link 2](http://www.pro-lite.co.uk/File/blog_driving_calibration_lamp.php)
 * Another is to use a calibrated fluorescent standard
-    - [link 1](https://www.sigmaaldrich.com/technical-documents/articles/biofiles/certifi-ed-fluorescence.html)
-    - [link 2](https://www.sigmaaldrich.com/catalog/product/sigma/69336?lang=en&region=US)
-    - [link 3](http://www.polysciences.com/default/catalog-products/microspheres-particles/instrument-standards/fluorescence-standards)
+    - [link 1](https://www.sigmaaldrich.com/technical-documents/articles/biofiles/certifi-ed-fluorescence.html), 
+    [link 2](https://www.sigmaaldrich.com/catalog/product/sigma/69336?lang=en&region=US),
+    [link 3](http://www.polysciences.com/default/catalog-products/microspheres-particles/instrument-standards/fluorescence-standards), 
+    [link 4](https://www.labsphere.com/labsphere-products-solutions/materials-coatings-2/coatings-materials/fluorescence-materials/)
 
 
 * We have SLS201 light source from Thorlabs (with tugsten-halogen bulb inside). 
-    - It features a relativelly stable color temperature of 2796 K (rated for +/- 15 K, at a 48 hour period, not entire life span of the bulb, but we assume it will be stable enough)
+    - It features a relativelly stable color temperature of 2796 K. Unfortunatelly this temperature is not guarantied for the lifetime of the bulb, and will depend on surroundign temerature, hours in operation, etc. However, we assume it does not deviate too much.  
     - Data for spectrum can be downloaded from  [here](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_ID=7269).
+    - Light from the lamp should be directed on to [Lambertian screen](https://en.wikipedia.org/wiki/Lambertian_reflectance), which can be made from unfinished wood, a charcoal. This surface will diffusevelly reflect light from lamp, this reflection can be measured by a spectrometer. Lamp by itself has a non-isotropic radiation, thus spectrum would depend on the lamp position if lamp would be used directly (also lamp fillament has different temperature at differenet parts of the fillament).
     
