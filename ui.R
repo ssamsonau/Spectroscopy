@@ -22,9 +22,9 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       
-      # conditionalPanel(condition="input.conditionedPanels==1",
-      #                  includeMarkdown("calibration_1.Rmd")
-      #                  ),
+      conditionalPanel(condition="input.conditionedPanels==1",
+                       includeMarkdown("calibration_1.Rmd")
+                       ),
       conditionalPanel(condition="input.conditionedPanels==2",
                        
                        includeMarkdown("calibration_2.Rmd")
@@ -38,7 +38,7 @@ shinyUI(fluidPage(
                        
                        checkboxInput("apply_calibration_correction", 
                                      "Apply calibration correction obtained in previous tab",
-                                     value = T),
+                                     value = T)
                        # tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903", 
                        #        "Silver mirrors"),
                        
@@ -62,14 +62,14 @@ shinyUI(fluidPage(
                        # tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4807", 
                        #        "BSW10R"),
                        # Choose elements in the optical path from a specimen to camera
-                       checkboxGroupInput("elements", label = " ", 
-                                          choices = c(" ")
-                                          # ("Longpass Dichroic Mirror, 425 nm Cutoff",
-                                          #             "Longpass Dichroic Mirror, 550 nm Cutoff", 
-                                          #             "Longpass Filter, 450 nm Cutoff", 
-                                          #             "Notch Filter green, 533 nm", 
-                                          #             "50:50 (R:T) Plate Beamsplitter")
-                       )
+                       # checkboxGroupInput("elements", label = " ", 
+                       #                    choices = c(" ")
+                       #                    # ("Longpass Dichroic Mirror, 425 nm Cutoff",
+                       #                    #             "Longpass Dichroic Mirror, 550 nm Cutoff", 
+                       #                    #             "Longpass Filter, 450 nm Cutoff", 
+                       #                    #             "Notch Filter green, 533 nm", 
+                       #                    #             "50:50 (R:T) Plate Beamsplitter")
+                       # )
       ),
       conditionalPanel(condition="input.conditionedPanels==4",
                        radioButtons("notes_type", 
@@ -188,7 +188,7 @@ shinyUI(fluidPage(
                                   includeMarkdown("notes/General Considerations.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Source characterization'",
-                                  h4("Source characterization")
+                                  includeMarkdown("notes/Source characterization.Rmd")
                  )
                  
                  
