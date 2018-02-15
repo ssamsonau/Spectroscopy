@@ -102,12 +102,12 @@ shinyUI(fluidPage(
                            "CSV File with data for calibration - Reference (nm, signal)", 
                            width = "100%"),
                  
-                 checkboxInput("fiber_correction", 
-                               "Apply correction to reference signal, 
-                               based on absorption of fiber optics cable 
-                               (Expected value after fiber cable will decrease, 
-                               comparing to rated values for lamp)",
-                               value = F, width = "100%"),
+                 # checkboxInput("fiber_correction", 
+                 #               "Apply correction to reference signal, 
+                 #               based on absorption of fiber optics cable 
+                 #               (Expected value after fiber cable will decrease, 
+                 #               comparing to rated values for lamp)",
+                 #               value = F, width = "100%"),
                  fileInput("file_calibrate_signal", 
                            "CSV File - Collected (nm, signal)", width = "100%"),
                  plotOutput("calibration_plot"), 
@@ -160,6 +160,21 @@ shinyUI(fluidPage(
                  fileInput("file_compare", 
                            "CSV File with data of spectrum, used to compare (nm, signal). This data will be rescaled to fit the same y range", 
                            width = "100%"),
+                 
+                 h5("Color for the final spectrum is calculated and shown bellow:"),
+                 tags$li("Please note, 
+                    it may not match exactly what you see - this color would be seen if object is 
+                    under perfectly flat white light (yes?)."),
+                 tags$li("More details here:"),
+                 tags$a("https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data"),
+                 tags$li("Color calculated based on 360-740 nm wavelenght range"),
+                 tags$li("Gray dots used to alling plot created in Mathematica with coordiantes in R plot"),
+                 tags$li("Empty circle shows position of a white color"),
+                 
+                 plotOutput("color_plot", width = "700px", height = "650px"),
+                 h4("Final color"),
+                 verbatimTextOutput("color_text"),
+                 
                  h4("Table with data"),
                  DT::dataTableOutput("finalSpectrum_dt"),
                  h4("Save final data to file"),

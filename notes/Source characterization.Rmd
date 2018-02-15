@@ -1,5 +1,16 @@
 ## Light Source characterization
 
+### if you use a fiber optics cable
 If you direct fiber optics cable on a source, collected signal will depend a lot on where exaclty did you direct the cable. In order to eliminate this effect either integrating sphere or cossine corrector should be used. 
   * [Cosine correctors](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4959)
   * [Example of use](https://oceanoptics.com/application/light-measurement/)
+  * After spectra is collected a correction coefficient shoudl be applied corresponding to trasmission spectrum of diffuser (see [link]((https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4959)))
+  
+### If you are using an integrating sphere
+You can position a source near the input port of an integrating sphere and look at the output at another port
+
+### If you are using a white target (white standard - see reflection description sub-page)
+This option is very similar (theoretically) to the use of an intagrating sphere above. Position white standard in place from which spectrometer will be gathering the signal. Position source in a place where it can shine on white target, but can't shine on a spectrometer directly. The light will be diffused and directed toward the spectrometer.
+
+### inside the sphere
+You can also choose to position a source inside the sphere usign come special holder.

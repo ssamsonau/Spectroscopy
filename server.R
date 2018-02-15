@@ -13,6 +13,9 @@ library(ggspectra)
 library(photobiology)
 library(photobiologyWavebands)
 
+library(colorscience)
+library(png)
+
 shinyServer(function(input, output) {
 
   values <- reactiveValues()

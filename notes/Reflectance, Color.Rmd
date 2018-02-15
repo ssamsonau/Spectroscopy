@@ -63,3 +63,26 @@ _Video of reflection measurements_ [here](https://www.spectroscopytv.com/perform
 * [Diffuse Reflectance IR and UV-vis Spectroscopy, by Friederike Jentoft](https://www.researchgate.net/file.PostFileLoader.html?id=57d5ac92f7b67e05927eb848&assetKey=AS%3A405210573885440%401473621138023)
 * Integrating spheres - see Fig. 14 [here](http://mmrc.caltech.edu/FTIR/Literature/Reflectance%20IR%20Khoshhesab.pdf)
 
+
+### Color
+
+#### CIE 1931
+
+Color can be represented using different systems of coordinates. For example following International Commission on Illumination (CIE):
+
+  - CIE 1931 RGB color space
+  - CIE 1931 XYZ color space
+  - given spectal data of I vs wavelength XYZ values can be calcualed using simple integration [see how](https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data)
+  in CIE XYZ, Y parameter is a measure of the luminance (aka brightness) of a color
+  - The co-ordinates x-small and y-small are calculated from ratios of the XYZ tristimulus values.
+The two axes for a plot are: x which is horizontal, and y which is vertical. The x and y are lower-case. Unfortunately it cannot show luminance. In order to show luminance, Y (upper-case) from CIE XYZ may be used. In this case it becomes known as  'xyY'. __Colours in the chromaticity diagram are not perceptually uniform__. [source](http://www.colourphil.co.uk/xyz_colour_space.shtml)
+  - Image of CIE 1931 color space chromaticity diagram is here [link](https://en.wikipedia.org/wiki/CIE_1931_color_space#/media/File:CIE1931xy_blank.svg)
+  
+
+#### CIE 1976
+
+  - In colorimetry, the CIE 1976 (L*, u*, v*) color space, commonly known by its abbreviation CIELUV, is a color space adopted by the International Commission on Illumination (CIE) in 1976, as a simple-to-compute transformation of the 1931 CIE XYZ color space, but which attempted __perceptual uniformity__. For details see [this](https://en.wikipedia.org/wiki/CIELUV). 
+  - CIE 1976 color space bellow created using Wolfram Mahtematica - see function ChromaticityPlot.
+!["CIE 1976 color space. Made in Wolfram Mathematica"](../spectral_image/Spectral Image made in Wolfram Mathematica.png)  
+
+

@@ -19,7 +19,7 @@ compare_calibration_data <- reactive({
   #browser()
   
   calibrate_signal_path <- ifelse(is.null(input$file_calibrate_signal),
-                                  "calibration/tungsten SLS201/Thorlabs_lamp_data_measured.csv",
+                                  "calibration/tungsten SLS201/SLS201_position 2.asc",
                                   input$file_calibrate_signal$datapath)
   
   calibr_signal <- readr::read_csv(calibrate_signal_path)
@@ -36,13 +36,13 @@ compare_calibration_data <- reactive({
   
   names(calibr_ref) <- c("wavelength", "intensity")
   
-  if(input$fiber_correction){
-    # adjust to fiber cable
-    f <- read_convert_make_f("calibration/fiber transmission in percents (obtained as ratio of 2 fiber signal over 1 fiber signal).csv", "nm")
-    
-    calibr_ref <- calibr_ref %>%
-      mutate(intensity = intensity * f(wavelength))  # how fiber will reduce intersity based on transmission
-  }
+  # if(input$fiber_correction){
+  #   # adjust to fiber cable
+  #   f <- read_convert_make_f("calibration/fiber transmission in percents (obtained as ratio of 2 fiber signal over 1 fiber signal).csv", "nm")
+  #   
+  #   calibr_ref <- calibr_ref %>%
+  #     mutate(intensity = intensity * f(wavelength))  # how fiber will reduce intersity based on transmission
+  # }
   
   
   
