@@ -1,6 +1,6 @@
 ## Light Source characterization
 
-### if you use a fiber optics cable
+### if you use a fiber optics cable (we don't use this option)
 If you direct fiber optics cable on a source, collected signal will depend a lot on where exaclty did you direct the cable. In order to eliminate this effect either integrating sphere or cossine corrector should be used. 
   * [Cosine correctors](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=4959)
   * [Example of use](https://oceanoptics.com/application/light-measurement/)

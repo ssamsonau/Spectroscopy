@@ -1,4 +1,4 @@
-### Absorption, Extinction, Scattering
+### Absorbance, Absorption, Transmission, Extinction, Scattering
 
 
 __Cuvette use:__
@@ -20,7 +20,7 @@ Use a special fiber optics probe designed for reflectance measurement if you are
 One normal fiber optics cable to deliver original light. Another normal cable to collect the reflectance at a desired angle.
 
 
-__Sample in the way use (absorption, transmission):__
+__Sample in the way use (absorbance, transmission):__
 
 1. Use white light source (Thorlabs SL201)
 2. Allight so it goes toward the spectrometer
@@ -33,20 +33,32 @@ __Sample in the way use (absorption, transmission):__
 
 __Transmittance:__ $$T = It/Io$$
 
-The light which is not transmitted is characterized by:    
-$$Extinction = scattering + absorption$$
-_Note:_ To make matter worse many resources define extinction as absorption. 
+,where $It$ - transmitted radiation, $Io$ - incident radiation 
 
-__Extinction is defined as:__
+__Extinction__
 
-$$E = log_{10}(Io/It) = log_{10}(1/T) = -log_{10}(T)$$
+Extinction is also known as __attenuation__ ([link](https://en.wikipedia.org/wiki/Attenuation)) - the gradual loss of flux intensity through a medium
 
-_In case there is no scattering (or it is negligible) - Extinction is equal to Absorption:_
+Extinction is characterized by __Absorbance__ - logariphm of the ratio of incident to transmitted radiant power through a material. Sometimes natural, but mostly common (base of 10) ([link](https://en.wikipedia.org/wiki/Attenuation) )
+
+Absorbance is different from __Absorption__ ([link](https://en.wikipedia.org/wiki/Attenuation) ):
+
+  * Absorption refers to the physical process of absorbing light. 
+  * Absorbance measures attenuation (of transmitted radiant power), which can be caused by absorption, but also reflection, scattering, and other physical processes.
+  $$absorbance = absorption + reflection + scattering$$
+
+$$A = log_{10}(Io/It) = log_{10}(1/T) = -log_{10}(T)$$
+
+
+
+
+#### Formulas
+
 
 [link](http://sydney.edu.au/science/molecular_bioscience/PHAR2811/Spectrophotometry/Spectrophotometry.ppt%2018.07.08.ppt): Intensity of light decaying exponentially: $$T = \frac{It}{Io} = e^{-\alpha c d}$$, where $\alpha$ is an extinction constant, $c$ is concentration and $d$ is light path length
 
 Taking log on both parts: $$ Ln( \frac{Io}{It})={\alpha c d}$$
-Converting to log10 (as absorption usually defined and reported in 10 base):
+Converting to log10 (as absorbance usually defined and reported in 10 base):
 $$ Log10( \frac{Io}{It})={\varepsilon c d}$$
 
 Now defining absorbance as 
@@ -56,7 +68,7 @@ $$A=-log_{10}(T)$$, we have Beer-Lambert's law: $$A = \varepsilon c d$$
 
 _When using cuvette and colloidal solution (or another similar situtaion):_   
 Let say you have a colloidal solution of particles in a reference liquid. 
-An equation representing absorption of a sample (particles) would be calculated from trasmission loses due to sample part (Trasmission losses of liqued+particles - trasmission losses of liquid) 
+An equation representing absorbance of a sample (particles) would be calculated from trasmission loses due to sample part (Trasmission losses of liqued+particles - trasmission losses of liquid) 
 
 $$A_{sample} = -log10(Ir/Io - It/Io)$$
 

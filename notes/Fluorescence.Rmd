@@ -25,3 +25,20 @@ __Fiber optics probe use:__
 
 1. See procedure for reflection and adjust accordingly
 2. In this case however, light from sample should be collected by an integrating sphere, instead of using the collimator - collimator (and fiber itself) refracts different colors differently, thus if used directly it will modify the spectrum under study. 
+
+
+#### General Info
+
+There are three main spectra types (related to fluorescence measurements):
+
+  * Absorbance
+  * Exitation
+  * Emmission
+  
+Absorption and Exitation spectra are not the same - Some molecules can absorb light but not emit radiation - see [link 1](https://www.thermofisher.com/us/en/home/life-science/cell-analysis/cell-analysis-learning-center/molecular-probes-school-of-fluorescence/imaging-basics/fundamentals-of-fluorescence-microscopy/physical-properties-that-define-fluorescence.html#ex), [link 2](https://www.researchgate.net/post/Whats_the_difference_between_an_excitation_spectrum_and_an_absorption_spectrum_for_the_same_molecule), [link 3](https://micro.magnet.fsu.edu/primer/lightandcolor/fluoroexcitation.html)
+
+Usually only intensity of emmision spectra does depend on exitaiton wavelength (not the shape of the emission spectra). However this is not true for some other objects - see for example this paper describing [fluorescence of silver/cobalt nanoparticles](https://www.sciencedirect.com/science/article/pii/S1026309812000958) (fig. 6)
+
+The optical spectroscopy setup in Hobbler in designed to use a fixed exitation wavelength (405 or 532nm) and thus is not providing exitation spectra.
+
+

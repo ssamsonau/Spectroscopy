@@ -1,0 +1,11 @@
+### Mapping
+
+Stage for sample (under the objective) is controled by arduino. This can be used to perform "spectroscopy mapping" - obtaining spectra at different location of a sample - creating a "map" of certain spectral characteristics. 
+
+* blue 405 nm laser ([CPS405](https://www.google.com/url?q=https%3A%2F%2Fwww.thorlabs.com%2Fnewgrouppage9.cfm%3Fobjectgroup_id%3D1487&sa=D&sntz=1&usg=AFQjCNFyGuXG-jfQGBvOHZTdGYRBZXMKUA)) or green 532 nm laser ([CPS405](https://www.google.com/url?q=https%3A%2F%2Fwww.thorlabs.com%2Fnewgrouppage9.cfm%3Fobjectgroup_id%3D1487&sa=D&sntz=1&usg=AFQjCNFyGuXG-jfQGBvOHZTdGYRBZXMKUA))
+* [10x Olympus Objective](https://www.google.com/url?q=https%3A%2F%2Fwww.thorlabs.com%2Fnewgrouppage9.cfm%3Fobjectgroup_id%3D1044%26pn%3DRMS10X&sa=D&sntz=1&usg=AFQjCNFLjFsEwmQWk0SZNh75a3rdgc_Wbw), whith Field of View  (observed area) ~ 2.2 mm
+* Using [this](http://www.google.com/url?q=http%3A%2F%2Fwww.ophiropt.com%2Flaser--measurement%2Flaser-power-energy-meters%2Fservices%2Ffocal-spot-size-calculator-for-gaussian-beams&sa=D&sntz=1&usg=AFQjCNGrRvweg5ov95Bj4BqS-2WA_5zZuw) calculator, our 10x objective with 405 laser, we get diameter of a focused spot of around 0.3 mm
+
+
+
+

@@ -32,6 +32,8 @@ shinyUI(fluidPage(
       
  
       conditionalPanel(condition="input.conditionedPanels==3",
+                       h5("Maximum range of 300-1000 is used based on: (1) calibration of spectrocmeter performed starting at 300 nm, 
+                          (2) sensitivity of Andor DU401A-BVF camera, (3) light is guied using silver mirrors, reflectivity of which falls under under 20% bellow 300 nm"),
                        fileInput("file_backg", "CSV File with background (nm, signal)"),
                        fileInput("file_ref", "CSV File with reference (nm, signal)"),
                        fileInput("file_sig", "CSV File with signal (nm, signal)"),
@@ -81,7 +83,8 @@ shinyUI(fluidPage(
                                                 "Raman", 
                                                 "Source characterization",
                                                 "Reflectance, Color",
-                                                "Thickness") 
+                                                "Thickness", 
+                                      "Mapping") 
                                     )
                        )
       
@@ -193,8 +196,12 @@ shinyUI(fluidPage(
                  conditionalPanel(condition="input.notes_type == 'Thickness'",
                                   includeMarkdown("notes/Thickness.Rmd")
                  ),
+                 
                  conditionalPanel(condition="input.notes_type == 'Transmittance, Extinction'",
                                   withMathJax(includeMarkdown("notes/Transmittance, Extinction.Rmd"))
+                 ),
+                 conditionalPanel(condition="input.notes_type == 'Mapping'",
+                                  includeMarkdown("notes/Mapping.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Fluorescence'",
                                   includeMarkdown("notes/Fluorescence.Rmd")
