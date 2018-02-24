@@ -35,10 +35,15 @@ There are three main spectra types (related to fluorescence measurements):
   * Exitation
   * Emmission
   
-Absorption and Exitation spectra are not the same - Some molecules can absorb light but not emit radiation - see [link 1](https://www.thermofisher.com/us/en/home/life-science/cell-analysis/cell-analysis-learning-center/molecular-probes-school-of-fluorescence/imaging-basics/fundamentals-of-fluorescence-microscopy/physical-properties-that-define-fluorescence.html#ex), [link 2](https://www.researchgate.net/post/Whats_the_difference_between_an_excitation_spectrum_and_an_absorption_spectrum_for_the_same_molecule), [link 3](https://micro.magnet.fsu.edu/primer/lightandcolor/fluoroexcitation.html)
+Absorption and Exitation spectra are not the same - Some molecules can absorb light but not emit radiation - see [link 1](https://www.thermofisher.com/us/en/home/life-science/cell-analysis/cell-analysis-learning-center/molecular-probes-school-of-fluorescence/imaging-basics/fundamentals-of-fluorescence-microscopy/physical-properties-that-define-fluorescence.html#ex), [link 2](https://www.thermofisher.com/us/en/home/life-science/cell-analysis/cell-analysis-learning-center/molecular-probes-school-of-fluorescence/fluorescence-basics/anatomy-fluorescence-spectra.html),  [link 3](https://www.researchgate.net/post/Whats_the_difference_between_an_excitation_spectrum_and_an_absorption_spectrum_for_the_same_molecule), [link 4](https://micro.magnet.fsu.edu/primer/lightandcolor/fluoroexcitation.html)
 
 Usually only intensity of emmision spectra does depend on exitaiton wavelength (not the shape of the emission spectra). However this is not true for some other objects - see for example this paper describing [fluorescence of silver/cobalt nanoparticles](https://www.sciencedirect.com/science/article/pii/S1026309812000958) (fig. 6)
 
 The optical spectroscopy setup in Hobbler in designed to use a fixed exitation wavelength (405 or 532nm) and thus is not providing exitation spectra.
+
+#### more info
+
+* https://pubs.acs.org/doi/abs/10.1021/cg5009363
+
 
 
