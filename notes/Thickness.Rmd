@@ -10,7 +10,7 @@ $ (m + m0 +1/2)\lambda = 2 n d$
 
 Make linear equation $$1/\lambda = [\frac{1}{4nd}+ \frac{m0}{2nd} ] + m \frac{1}{2nd}$$
 
-Fit this linear regression to obtain d from the slope (m0 then can be obtained from an intercept if needed)
+Fit this linear regression to obtain d from the slope $d = \frac{1}{2 n slope}$  (m0 then can be obtained from an intercept if needed)
 
 #### Note:
 
