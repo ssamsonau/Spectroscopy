@@ -72,7 +72,7 @@ d / 1000 # now in um
 #https://en.wikipedia.org/wiki/Propagation_of_uncertainty
 #f = aA
 # d = 1/(2 n slope)
-d_sigma = sqrt(1/(2 * ind_refr)) * slope_sigma 
+d_sigma = slope_sigma / (2 * ind_refr * slope^2)
 d_sigma
 
 cat("Thickness is: (", d, " +/- ", d_sigma, ") nm\n", sep = "")

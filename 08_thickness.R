@@ -79,7 +79,7 @@ found_peaks <- reactive({
   #https://en.wikipedia.org/wiki/Propagation_of_uncertainty
   #f = aA
   # d = 1/(2 n slope)
-  d_sigma = sqrt(1/(2 * ind_refr)) * slope_sigma 
+  d_sigma =  slope_sigma / (2 * ind_refr * slope^2)
   #d_sigma
   
   #browser()
@@ -94,6 +94,6 @@ output$thickness_plot <- renderPlot({
 })
 
 output$thickness_text <- renderText({
-  paste0("Thickness is: (", found_peaks()$d, 
-         " +/- ", found_peaks()$d_sigma, ") nm\n")
+  paste0("Thickness is: (", round(found_peaks()$d), 
+         " +/- ", round(found_peaks()$d_sigma), ") nm\n")
 })
