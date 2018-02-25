@@ -12,6 +12,8 @@ Make linear equation $$1/\lambda = [\frac{1}{4nd}+ \frac{m0}{2nd} ] + m \frac{1}
 
 Fit this linear regression to obtain d from the slope $d = \frac{1}{2 n slope}$  (m0 then can be obtained from an intercept if needed)
 
+From standard error of slope you can get standard error of d, usign [error propagation](https://en.wikipedia.org/wiki/Propagation_of_uncertainty)
+
 #### Note:
 
 Note: silver mirrors coated with 100 nm protective SiO2 coating. This can introduce corresponding interference pattern. This by itself creates a certain interference in traveling signal.  See [example](https://www.filmetrics.com/reflectance-calculator?wmin=200&wmax=1000&wstep=1&angle=0&pol=s&units=nm&mmat=Air&mat[]=SiO2&d[]=100&smat=Si&sptype=r)

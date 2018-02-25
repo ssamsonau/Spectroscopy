@@ -25,6 +25,8 @@ shinyServer(function(input, output) {
   source("02_tab_2_calibr_spectrum.R", local = T)
   source("05_dataPlot.R", local = T)
   source("06_final_spectrum_plot.R", local = T)
+  
+  source("08_thickness.R", local = T)
 
   ##################
   

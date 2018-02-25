@@ -139,13 +139,16 @@ shinyUI(fluidPage(
                            "sig - backg", width = "100%"),
                  checkboxInput("is_raman", "Is this Raman spectrum? (choose before pressign calculate or press calculate again)", 
                                value = F, width = "100%"),
+                 checkboxInput("thickness_calculation", "Calculate thickness of thin film? (choose before pressign calculate or press calculate again)", 
+                               value = F, width = "100%"),
                  conditionalPanel('input.is_raman',
                                   numericInput("laser_wavelength", "Specify laser wavelength for Raman Shift calculation",
                                                value = 532, width = "100%")
                  ),
                  
                  actionButton("calculate", "Calculate (Recalculate)"),
-                 
+                 tags$hr(),
+                 h3("Final Spectrum Plot"),
                  h5("To magnify: Select area and double-click."),
                  actionButton("finalSpectrum_plot_reset_but", "Reset Magnification"),
                  actionButton("finalSpectrum_plot_rescale_but", "Rescale y-Axis for data"),
@@ -178,6 +181,18 @@ shinyUI(fluidPage(
                  h4("Final color"),
                  verbatimTextOutput("color_text"),
                  
+                 conditionalPanel(condition="input.thickness_calculation",
+                                  tags$hr(),
+                                  
+                                  h4("Plot of peaks found in data on the left.
+                                     Fitted linear model on the right."),
+                                  h5("Using wavelength range corresponding to area selected on Final Spectrum Plot"),
+                                  withMathJax(textOutput("formula")),
+                                  plotOutput("thickness_plot", width = "100%"),
+                                  textOutput("thickness_text")
+                 ),
+                 
+                 tags$hr(),
                  h4("Table with data"),
                  DT::dataTableOutput("finalSpectrum_dt"),
                  h4("Save final data to file"),
@@ -194,7 +209,7 @@ shinyUI(fluidPage(
                                   includeMarkdown("notes/Reflectance, Color.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Thickness'",
-                                  includeMarkdown("notes/Thickness.Rmd")
+                                  withMathJax(includeMarkdown("notes/Thickness.Rmd"))
                  ),
                  
                  conditionalPanel(condition="input.notes_type == 'Transmittance, Extinction'",
