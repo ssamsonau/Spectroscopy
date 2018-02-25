@@ -198,7 +198,7 @@ shinyUI(fluidPage(
                                   
                                   h5("Parameters (see the link for details)"),
                                   tags$a("https://cran.r-project.org/web/packages/Peaks/Peaks.pdf"),
-                                  numericInput("t_sigma", "sigma of searched peaks", 3, width = "100%"),
+                                  #numericInput("t_sigma", "sigma of searched peaks", 3, width = "100%"),
                                   numericInput("t_threshold", "threshold value in % for selected peaks, peaks with amplitude
 less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                   

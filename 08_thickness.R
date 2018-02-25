@@ -37,7 +37,8 @@ found_peaks <- reactive({
   library.dynam('Peaks', 'Peaks', lib.loc=NULL)   # see http://r.789695.n4.nabble.com/Problem-with-quot-Peaks-quot-package-followup-td4674949.html
   p <- SpectrumSearch(df$Intensity  %>% as.numeric, 
                       background = T,  
-                      sigma = input$t_sigma, threshold = input$t_threshold)
+                      #sigma = input$t_sigma, 
+                      threshold = input$t_threshold)
   
   peak_w <- df[p$pos, "wavelength"] %>% unlist
   peak_int <- df[p$pos, "Intensity"] %>% unlist
