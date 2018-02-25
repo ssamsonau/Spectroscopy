@@ -72,7 +72,7 @@ found_peaks <- reactive({
   
   slope <- mod$coefficients[2]
   slope_sigma <- summary(mod)$coefficients[2, 2]
-  ind_refr <- 1.63
+  ind_refr <- input$index_of_refraction # 1.63
   d <- 1/(2 * ind_refr * slope)
   #d / 1000 # now in um
   

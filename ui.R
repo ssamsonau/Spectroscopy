@@ -196,7 +196,8 @@ shinyUI(fluidPage(
                  conditionalPanel(condition="input.thickness_calculation",
                                   tags$hr(),
                                   
-                                  h5("Parameters (see the link for details)"),
+                                  numericInput("index_of_refraction", "Index of refraction of the film material", 1.5, width = "100%"),
+                                  h5("Peak searching tuning: (see the link for details)"),
                                   tags$a("https://cran.r-project.org/web/packages/Peaks/Peaks.pdf"),
                                   #numericInput("t_sigma", "sigma of searched peaks", 3, width = "100%"),
                                   numericInput("t_threshold", "threshold value in % for selected peaks, peaks with amplitude
