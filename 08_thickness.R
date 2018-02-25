@@ -21,7 +21,7 @@ found_peaks <- reactive({
   if(input$thickness_calculation == F)
     return()
   # 
-  browser()
+  #browser()
   
   if(is.null(ranges_finalSpectrum_plot$x)){
     df <- finalSpectrum()
@@ -36,8 +36,8 @@ found_peaks <- reactive({
   library(Peaks)
   library.dynam('Peaks', 'Peaks', lib.loc=NULL)   # see http://r.789695.n4.nabble.com/Problem-with-quot-Peaks-quot-package-followup-td4674949.html
   p <- SpectrumSearch(df$Intensity  %>% as.numeric, 
-                      background = T, window = 5, 
-                      sigma = 3, threshold = 10)
+                      background = T,  
+                      sigma = input$t_sigma, threshold = input$t_threshold)
   
   peak_w <- df[p$pos, "wavelength"] %>% unlist
   peak_int <- df[p$pos, "Intensity"] %>% unlist
@@ -64,7 +64,8 @@ found_peaks <- reactive({
   mod <- lm(inverse_wavelength ~ peak_m, data = df_new)
   
   regr_plot <- ggplotRegression(mod) +
-    scale_y_continuous( sec.axis = sec_axis(~1/., name = "wavelength"))
+    scale_y_continuous( sec.axis = sec_axis(~1/., name = "wavelength")) +
+    xlab("m")
   
   #summary(mod)
   
@@ -94,9 +95,4 @@ output$thickness_plot <- renderPlot({
 output$thickness_text <- renderText({
   paste0("Thickness is: (", found_peaks()$d, 
          " +/- ", found_peaks()$d_sigma, ") nm\n")
-})
-
-output$formula <- renderPrint({
-  print(paste("Fit using this formula:", 
-              "$1/\\lambda = [\\frac{1}{4nd}+ \\frac{m0}{2nd} ] + m \\frac{1}{2nd}$"))
 })

@@ -17,6 +17,7 @@ shinyUI(fluidPage(
 
   # Application title
   titlePanel("Spectroscopy Data"),
+  withMathJax(),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
@@ -130,7 +131,7 @@ shinyUI(fluidPage(
                             ),
                             dblclick = "dataPlot_dblclick"),
                  
-                 
+                 tags$hr(),
                  h4("Calculate final intensity spectrum using a specific formula"),
                  # tags$li("In case of absorption spectroscopy. Data collected with light off: background, light on and empty quvette: reference, light one and liquid under study inside the cuvvete: signal. 
                  #         Formula "),
@@ -139,8 +140,7 @@ shinyUI(fluidPage(
                            "sig - backg", width = "100%"),
                  checkboxInput("is_raman", "Is this Raman spectrum? (choose before pressign calculate or press calculate again)", 
                                value = F, width = "100%"),
-                 checkboxInput("thickness_calculation", "Calculate thickness of thin film? (choose before pressign calculate or press calculate again)", 
-                               value = F, width = "100%"),
+                 
                  conditionalPanel('input.is_raman',
                                   numericInput("laser_wavelength", "Specify laser wavelength for Raman Shift calculation",
                                                value = 532, width = "100%")
@@ -167,28 +167,47 @@ shinyUI(fluidPage(
                            "CSV File with data of spectrum, used to compare (nm, signal). This data will be rescaled to fit the same y range", 
                            width = "100%"),
                  
-                 h5("Color for the final spectrum is calculated and shown bellow:"),
-                 tags$li("Please note, 
-                    it may not match exactly what you see - this color would be seen if object is 
-                    under perfectly flat white light (yes?)."),
-                 tags$li("More details here:"),
-                 tags$a("https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data"),
-                 tags$li("Color calculated based on 360-740 nm wavelenght range"),
-                 tags$li("Gray dots used to alling plot created in Mathematica with coordiantes in R plot"),
-                 tags$li("Empty circle shows position of a white color"),
+                 tags$hr(),
+                 checkboxInput("thickness_calculation", "Calculate thickness of thin film? (choose before pressign calculate or press calculate again)", 
+                               value = F, width = "100%"),
+                 checkboxInput("color_calculation", "Calculate color based on spectrum? (choose before pressign calculate or press calculate again)", 
+                               value = F, width = "100%"),
+                 tags$hr(),
                  
-                 plotOutput("color_plot", width = "700px", height = "650px"),
-                 h4("Final color"),
-                 verbatimTextOutput("color_text"),
+                 conditionalPanel(condition="input.color_calculation",
+                                  tags$hr(),
+                                  h5("Color for the final spectrum is calculated and shown bellow:"),
+                                  tags$li("Please note, 
+                                          it may not match exactly what you see - this color would be seen if object is 
+                                          under perfectly flat white light (yes?)."),
+                                  tags$li("More details here:"),
+                                  tags$a("https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data"),
+                                  tags$li("Color calculated based on 400-700 nm wavelenght range"),
+                                  tags$li("Gray dots used to alling plot created in Mathematica with coordiantes in R plot"),
+                                  tags$li("Empty circle shows position of a white color"),
+                                  
+                                  plotOutput("color_plot", width = "700px", height = "650px"),
+                                  h4("Final color"),
+                                  verbatimTextOutput("color_text")               
+                                  
+                 ),
+                 
                  
                  conditionalPanel(condition="input.thickness_calculation",
                                   tags$hr(),
                                   
-                                  h4("Plot of peaks found in data on the left.
-                                     Fitted linear model on the right."),
-                                  h5("Using wavelength range corresponding to area selected on Final Spectrum Plot"),
-                                  withMathJax(textOutput("formula")),
+                                  h5("Parameters (see the link for details)"),
+                                  tags$a("https://cran.r-project.org/web/packages/Peaks/Peaks.pdf"),
+                                  numericInput("t_sigma", "sigma of searched peaks", 3, width = "100%"),
+                                  numericInput("t_threshold", "threshold value in % for selected peaks, peaks with amplitude
+less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
+                                  
+                                  tags$li("Using wavelength range corresponding to area selected on Final Spectrum Plot"),
+                                  tags$li("Plot of peaks found in data on the left. Red dots show position of determined peaks"),
+                                  tags$li("Fitted linear model on the right. Formula for fitting:"),
+                                  helpText("$$1/\\lambda = (\\frac{1}{4nd}+ \\frac{m_0}{2nd} ) + m \\frac{1}{2nd}$$"),
                                   plotOutput("thickness_plot", width = "100%"),
+                                  h4("Final thickness is:"),
                                   textOutput("thickness_text")
                  ),
                  

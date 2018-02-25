@@ -9,6 +9,9 @@
     - [300/500](http://www.gratinglab.com/Products/Product_Tables/Efficiency/Efficiency.aspx?catalog=53-*-270R) 
     - [1200/600](http://www.gratinglab.com/Products/Product_Tables/Efficiency/Efficiency.aspx?catalog=53-*-340R)
     
+* Another example:
+    - Silver mirrors used in the system are coated with 100 nm protective SiO2 coating. This can introduce corresponding interference pattern. This by itself creates a certain interference in traveling signal.  See [example](https://www.filmetrics.com/reflectance-calculator?wmin=200&wmax=1000&wstep=1&angle=0&pol=s&units=nm&mmat=Air&mat[]=SiO2&d[]=100&smat=Si&sptype=r)
+    
 * There are many ways to address this type of calibration. See this [link](http://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7458.pdf) for various options.    
     
 * One of the approaches to account for that is to do calibration using tungsten lamp

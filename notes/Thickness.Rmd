@@ -2,22 +2,17 @@
 
 ### Theory
 
-Given air, film, air situation. One relfection with n2>n1 (+$\lambda/2$). Condition for maxima then $ (m+1/2)\lambda = 2 n d$. 
+Given air, film, air situation. One relfection with n2>n1 (thus + $1/2 \\lambda$). Condition for maxima then $$ (m+1/2)\\lambda = 2 n d$$ . 
 
-We get values of $\lambda$ for maxima from spectrum, but how to get m? It may happen that situation of m = 1 is somewhere in IR. For example given n =1.5 and d = 1 um,  $\lambda$ corresponding to m = 1 will be 2 um.  Thus we replace m by m + m0. Where m0 is unknown "shift of m". THis way we can start counting m from the first peak we oberve in long wavlength.
+We get values of $\lambda$ for maxima from spectrum, but how to get m? It may happen that situation of m = 1 is somewhere in IR. For example given n =1.5 and d = 1 um,  $\lambda$ corresponding to m = 1 will be 2 um.  Thus we replace $m$ by $m + m_0$. Where $m_0$ is unknown "shift of $m$". THis way we can start counting m from the first peak we oberve in long wavlength.
 
-$ (m + m0 +1/2)\lambda = 2 n d$
+$$ (m + m_0 +1/2) \\lambda = 2 n d$$
 
-Make linear equation $$1/\lambda = [\frac{1}{4nd}+ \frac{m0}{2nd} ] + m \frac{1}{2nd}$$
+Make linear equation $$1/\lambda = [\frac{1}{4nd}+ \frac{m_0}{2nd} ] + m \frac{1}{2nd}$$
 
-Fit this linear regression to obtain d from the slope $d = \frac{1}{2 n slope}$  (m0 then can be obtained from an intercept if needed)
+Fit this linear regression to obtain d from the slope $d = \frac{1}{2* n * slope}$  ($m_0$ then can be obtained from an intercept if needed)
 
 From standard error of slope you can get standard error of d, usign [error propagation](https://en.wikipedia.org/wiki/Propagation_of_uncertainty)
-
-#### Note:
-
-Note: silver mirrors coated with 100 nm protective SiO2 coating. This can introduce corresponding interference pattern. This by itself creates a certain interference in traveling signal.  See [example](https://www.filmetrics.com/reflectance-calculator?wmin=200&wmax=1000&wstep=1&angle=0&pol=s&units=nm&mmat=Air&mat[]=SiO2&d[]=100&smat=Si&sptype=r)
-Calibration is important!
 
 
 ### If index of refraction is not known
