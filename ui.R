@@ -229,11 +229,11 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                   includeMarkdown("notes/Reflectance, Color.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Thickness'",
-                                  withMathJax(includeMarkdown("notes/Thickness.Rmd"))
+                                  includeMarkdown("notes/Thickness.md")
                  ),
                  
                  conditionalPanel(condition="input.notes_type == 'Transmittance, Extinction'",
-                                  withMathJax(includeMarkdown("notes/Transmittance, Extinction.Rmd"))
+                                  includeMarkdown("notes/Transmittance, Extinction.Rmd")
                  ),
                  conditionalPanel(condition="input.notes_type == 'Mapping'",
                                   includeMarkdown("notes/Mapping.Rmd")

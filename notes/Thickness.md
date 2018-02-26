@@ -22,61 +22,8 @@ Based on this formula we can make a plot (bellow) to see for which values of thi
   * Testing for wide range of m values
   * Blue - means difference near blue spectral end, IR - near IR spectral end
   * Obtained range is ~ 200 nm - 160 um
-  * This is only estimation. Using the full avaialbe to spectrometer spectrum of 200-1050 nm, and not limiting pattern with 200 nm, smaller thickness can be detected.
 
-```{r, warning=F, echo=F, message=F}
-library(tidyverse)
-
-d_l <- function(d, n = 1.5){ # delta lambda in visual range given thickness d in nm
-  m <- 1:100000
-  l <- 2*n*d/(m+0.5)
-  r_m <- range(m[l < 1000 & l > 400]) # visual range
-  2*n*d/(0.75+2*r_m+r_m^2)
-}
-
-#d_l(1000)
-
-
-d_vect <- c(seq(10, 1000, by =10), seq(1000, 2e5, by = 100))
-d_l_vect <- sapply(d_vect, d_l)
-
-dfIR <- tibble(
-  thickness = d_vect, 
-  wavelength_difference_between_peaks = d_l_vect[1, ],
-  type = "IR"
-)
-
-dfBlue <- tibble(
-  thickness = d_vect, 
-  wavelength_difference_between_peaks = d_l_vect[2, ],
-  type = "Blue"
-)
-df <- bind_rows(dfBlue, dfIR)
-
-df <- df %>%
-  na.omit() %>%
-  filter(between(wavelength_difference_between_peaks, 2, 200))
-
-
-library(ggplot2)
-
-p <- ggplot(df) +
-  geom_line(aes(x = thickness, y = wavelength_difference_between_peaks,
-                color = type)) +
-  geom_hline(yintercept = 2) +
-  ylab("Diference in nm") + 
-  xlab("Thickness of film in nm") +
-  ggtitle("Difference between maxima in VIS-NIR (400-1000 nm) vs Thickness") +
-  #ylim(0, 100) +
-  #scale_y_log10() 
-  scale_x_log10()
-
-#print(range(df$thickness))
-
-#library(plotly)
-#ggplotly(p)
-p
-```
+![](Thickness_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
 #### Determining a thickness
 
