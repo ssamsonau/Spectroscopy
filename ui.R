@@ -202,6 +202,7 @@ shinyUI(fluidPage(
                                   #numericInput("t_sigma", "sigma of searched peaks", 3, width = "100%"),
                                   numericInput("t_threshold", "threshold value in % for selected peaks, peaks with amplitude
 less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
+                                  textInput("manual_thickness_points", "Enter wavlenght with maxima mannualy (separated by comma)"),
                                   
                                   tags$li("Using wavelength range corresponding to area selected on Final Spectrum Plot"),
                                   tags$li("Plot of peaks found in data on the left. Red dots show position of determined peaks"),

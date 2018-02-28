@@ -31,7 +31,7 @@ found_peaks <- reactive({
                      ranges_finalSpectrum_plot$x[2]))
   }
     
-  
+  #browser()
   library(gridExtra)
   library(Peaks)
   library.dynam('Peaks', 'Peaks', lib.loc=NULL)   # see http://r.789695.n4.nabble.com/Problem-with-quot-Peaks-quot-package-followup-td4674949.html
@@ -49,6 +49,17 @@ found_peaks <- reactive({
     peak_int = peak_int
   )
   
+  if(input$manual_thickness_points != ""){
+    points <- str_split(input$manual_thickness_points, 
+                        pattern = ",", simplify = T)  %>% 
+      as.numeric()
+    
+    plot_peaks <- tibble(
+      peak_w = points, 
+      peak_int = rep(1, length(points))
+    ) 
+  }
+  
   peak_plot <- ggplot(df) +
     geom_point(aes(wavelength, Intensity)) +
     geom_point(data = plot_peaks, aes(peak_w, peak_int), 
@@ -56,8 +67,8 @@ found_peaks <- reactive({
   
   
   df_new <- tibble(
-    lambda = peak_w,
-    inverse_wavelength = 1/ peak_w
+    lambda = plot_peaks$peak_w,
+    inverse_wavelength = 1/ plot_peaks$peak_w
   ) %>%
     arrange(-lambda) %>%
     mutate(peak_m = row_number())

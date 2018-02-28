@@ -1,6 +1,6 @@
 
 library(readr)
-df <- read_csv("example_data/reflection with fiber probe.asc", col_names = F
+df <- read_csv("example_data/2/signal.asc", col_names = F
                 )
 
 names(df) <- c("w", "int")
@@ -76,3 +76,5 @@ d_sigma = slope_sigma / (2 * ind_refr * slope^2)
 d_sigma
 
 cat("Thickness is: (", d, " +/- ", d_sigma, ") nm\n", sep = "")
+
+
