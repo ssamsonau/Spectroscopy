@@ -79,5 +79,5 @@ combined_data <- reactive({
   #   }
   
   dt %>%
-    filter(between(wavelength, 300, 1000)) 
+    filter(between(wavelength, 300, 1050)) 
 })

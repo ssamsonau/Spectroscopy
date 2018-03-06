@@ -8,10 +8,10 @@ ggplotRegression <- function (fit) {
                                y = names(fit$model)[1])) + 
     geom_point() +
     stat_smooth(method = "lm", col = "red") +
-    labs(title = paste("Adj R2 = ",signif(summary(fit)$adj.r.squared, 5),
-                       "Intercept =",signif(fit$coef[[1]],5 ),
-                       " Slope =",signif(fit$coef[[2]], 5),
-                       " P =",signif(summary(fit)$coef[2,4], 5)))
+    labs(title = paste("Adj R2 = ",signif(summary(fit)$adj.r.squared, 3),
+                       "Intercept =",signif(fit$coef[[1]],3 ), "\n",
+                       " Slope =",signif(fit$coef[[2]], 3),
+                       " P =",signif(summary(fit)$coef[2,4], 3)))
 }
 ##################################################
 ##################################################
@@ -40,6 +40,9 @@ found_peaks <- reactive({
                       #sigma = input$t_sigma, 
                       threshold = input$t_threshold)
   
+  peak_plot <- ggplot(df) +
+    geom_point(aes(wavelength, Intensity)) 
+  
   peak_w <- df[p$pos, "wavelength"] %>% unlist
   peak_int <- df[p$pos, "Intensity"] %>% unlist
   
@@ -58,13 +61,21 @@ found_peaks <- reactive({
       peak_w = points, 
       peak_int = rep(1, length(points))
     ) 
+    
+    #browser()
+    peak_plot <- peak_plot + 
+      geom_vline(xintercept = plot_peaks$peak_w,  
+                 color = "red", size = 1, linetype = 2)
   }
   
-  peak_plot <- ggplot(df) +
-    geom_point(aes(wavelength, Intensity)) +
-    geom_point(data = plot_peaks, aes(peak_w, peak_int), 
-               color = "red", size = 2)
   
+  if(input$manual_thickness_points == ""){
+    peak_plot <- peak_plot + 
+      geom_point(data = plot_peaks, aes(peak_w, peak_int), 
+                 color = "red", size = 2)
+    
+  }
+    
   
   df_new <- tibble(
     lambda = plot_peaks$peak_w,
@@ -72,6 +83,8 @@ found_peaks <- reactive({
   ) %>%
     arrange(-lambda) %>%
     mutate(peak_m = row_number())
+  
+  #browser()
   
   mod <- lm(inverse_wavelength ~ peak_m, data = df_new)
   
@@ -107,4 +120,30 @@ output$thickness_plot <- renderPlot({
 output$thickness_text <- renderText({
   paste0("Thickness is: (", round(found_peaks()$d), 
          " +/- ", round(found_peaks()$d_sigma), ") nm\n")
+})
+
+
+
+values$manually_chosen_peak_w <- ""
+
+observeEvent(input$finalSpectrum_plot_click, {
+  #browser()
+  if(values$manually_chosen_peak_w == ""){
+    values$manually_chosen_peak_w <- 
+      round(input$finalSpectrum_plot_click$x, digits = 2)
+  }else{
+    values$manually_chosen_peak_w <- 
+      paste0(values$manually_chosen_peak_w, ", ",
+             round(input$finalSpectrum_plot_click$x, digits = 2))
+  }
+  
+  updateTextInput(session, inputId = "manual_thickness_points", 
+                  value = values$manually_chosen_peak_w)
+  
+})
+
+observeEvent(input$manual_peak_update_but, {
+  #browser()
+  values$manually_chosen_peak_w <- 
+    input$manual_thickness_points
 })

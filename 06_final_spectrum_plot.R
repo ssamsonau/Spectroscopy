@@ -10,6 +10,8 @@ observeEvent(input$finalSpectrum_plot_dblclick, {
   }
 })
 
+
+
 observeEvent(input$finalSpectrum_plot_reset_but, {
   ranges_finalSpectrum_plot$x <- NULL
   ranges_finalSpectrum_plot$y <- NULL

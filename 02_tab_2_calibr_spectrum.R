@@ -58,7 +58,7 @@ compare_calibration_data <- reactive({
   dt <- dt %>%
     group_by(type) %>%
     select(wavelength, intensity, type) %>%
-    filter(between(wavelength, 300, 1000)) %>%
+    filter(between(wavelength, 300, 1050)) %>%
     mutate(intensity_norm = intensity / max(intensity, na.rm = T)) %>%
     ungroup()
   
@@ -77,7 +77,7 @@ compare_calibration_data <- reactive({
   correction_factor$type <- "correction_factor"
   
   bind_rows(dt, correction_factor) %>%
-    filter(between(wavelength, 300, 1000)) 
+    filter(between(wavelength, 300, 1050)) 
 })
 
 

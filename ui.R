@@ -33,7 +33,7 @@ shinyUI(fluidPage(
       
  
       conditionalPanel(condition="input.conditionedPanels==3",
-                       h5("Maximum range of 300-1000 is used based on: (1) calibration of spectrocmeter performed starting at 300 nm, 
+                       h5("Maximum range of 300-1050 is used based on: (1) calibration of spectrocmeter performed starting at 300 nm, 
                           (2) sensitivity of Andor DU401A-BVF camera, (3) light is guied using silver mirrors, reflectivity of which falls under under 20% bellow 300 nm"),
                        fileInput("file_backg", "CSV File with background (nm, signal)"),
                        fileInput("file_ref", "CSV File with reference (nm, signal)"),
@@ -121,7 +121,7 @@ shinyUI(fluidPage(
                  ),
         tabPanel("Work with the signal", value = 3,
                  h4("Raw data with modifications corresponding to specified optical elements in path"),
-                 h5("To magnify: Select area and double-click."),
+                 tags$li("To magnify: Select area and double-click."),
                  actionButton("dataPlot_reset_but", "Reset Magnification"),
                  actionButton("dataPlot_rescale_but", "Rescale y-Axis for data"),
                  plotOutput("dataPlot", 
@@ -149,7 +149,8 @@ shinyUI(fluidPage(
                  actionButton("calculate", "Calculate (Recalculate)"),
                  tags$hr(),
                  h3("Final Spectrum Plot"),
-                 h5("To magnify: Select area and double-click."),
+                 tags$li("To magnify: Select area and double-click."),
+                 tags$li("To manualy specify peaks positions (thickness measurements: single click on each peak)"),
                  actionButton("finalSpectrum_plot_reset_but", "Reset Magnification"),
                  actionButton("finalSpectrum_plot_rescale_but", "Rescale y-Axis for data"),
                  plotOutput("finalSpectrum_plot",
@@ -158,6 +159,7 @@ shinyUI(fluidPage(
                               resetOnNew = TRUE
                             ),
                             dblclick = "finalSpectrum_plot_dblclick", 
+                            click = "finalSpectrum_plot_click",
                             hover = "finalSpectrum_plot_hover"),
                  uiOutput("spline_n_ui"),
                  checkboxInput("hide_dots", "Hide data points" , value = F),
@@ -182,7 +184,7 @@ shinyUI(fluidPage(
                                           under perfectly flat white light (yes?)."),
                                   tags$li("More details here:"),
                                   tags$a("https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data"),
-                                  tags$li("Color calculated based on 400-700 nm wavelenght range"),
+                                  tags$li("Color calculated based on 360-760 nm wavelenght range"),
                                   tags$li("Gray dots used to alling plot created in Mathematica with coordiantes in R plot"),
                                   tags$li("Empty circle shows position of a white color"),
                                   
@@ -203,7 +205,8 @@ shinyUI(fluidPage(
                                   numericInput("t_threshold", "threshold value in % for selected peaks, peaks with amplitude
 less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                   textInput("manual_thickness_points", "Enter wavlenght with maxima mannualy (separated by comma)"),
-                                  
+                                  actionButton("manual_peak_update_but", 
+                                               "Updated chosen peak positions"),
                                   tags$li("Using wavelength range corresponding to area selected on Final Spectrum Plot"),
                                   tags$li("Plot of peaks found in data on the left. Red dots show position of determined peaks"),
                                   tags$li("Fitted linear model on the right. Formula for fitting:"),
@@ -211,6 +214,7 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                   plotOutput("thickness_plot", width = "100%"),
                                   h4("Final thickness is:"),
                                   textOutput("thickness_text")
+                                  
                  ),
                  
                  tags$hr(),

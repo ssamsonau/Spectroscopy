@@ -16,7 +16,7 @@ library(photobiologyWavebands)
 library(colorscience)
 library(png)
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   values <- reactiveValues()
   
