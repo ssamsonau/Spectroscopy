@@ -187,10 +187,8 @@ output$thickness_map <- renderPlotly({
       add_markers() %>%
       layout(scene = list(xaxis = list(title = 'x'),
                           yaxis = list(title = 'y'),
-                          zaxis = list(title = 'Thickness (nm)')),
-             zaxis = list(
-               range = c(0, max(df$d)
-                         )
+                          zaxis = list(title = 'Thickness (nm)', 
+                                       range = c(0, max(df$d)))
                ) 
       )
   }
