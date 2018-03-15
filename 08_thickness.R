@@ -46,12 +46,6 @@ found_peaks <- reactive({
   peak_w <- df[p$pos, "wavelength"] %>% unlist
   peak_int <- df[p$pos, "Intensity"] %>% unlist
   
-  
-  plot_peaks <- tibble(
-    peak_w = peak_w, 
-    peak_int = peak_int
-  )
-  
   if(input$use_manually_chosen_peak_w){
     points <- str_split(input$manual_thickness_points, 
                         pattern = ",", simplify = T)  %>% 
@@ -70,6 +64,11 @@ found_peaks <- reactive({
   
   
   if(!input$use_manually_chosen_peak_w){
+    plot_peaks <- tibble(
+      peak_w = peak_w, 
+      peak_int = peak_int
+    )
+    
     peak_plot <- peak_plot + 
       geom_point(data = plot_peaks, aes(peak_w, peak_int), 
                  color = "red", size = 2)

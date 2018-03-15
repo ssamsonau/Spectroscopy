@@ -20,6 +20,8 @@ shinyServer(function(input, output, session) {
 
   values <- reactiveValues()
   
+  source('directoryInput.R')
+  
   source("03_open_data_files.R", local = T)
   source("04_data_transformation.R", local = T)
   source("02_tab_2_calibr_spectrum.R", local = T)
@@ -27,6 +29,7 @@ shinyServer(function(input, output, session) {
   source("06_final_spectrum_plot.R", local = T)
   source("07_color_calculation.R", local = T)
   source("08_thickness.R", local = T)
+  source("09_many_files_thickness.R", local = T)
 
   ##################
   

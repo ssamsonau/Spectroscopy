@@ -12,6 +12,9 @@ library(tidyverse)
 library(ggspectra)
 library(photobiology)
 library(photobiologyWavebands)
+library(shinyFiles)
+source('directoryInput.R')
+
 
 shinyUI(fluidPage(
 
@@ -215,8 +218,16 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                   helpText("$$1/\\lambda = (\\frac{1}{4nd}+ \\frac{m_0}{2nd} ) + m \\frac{1}{2nd}$$"),
                                   plotOutput("thickness_plot", width = "100%"),
                                   h4("Final thickness is:"),
-                                  textOutput("thickness_text")
+                                  textOutput("thickness_text"),
+                                  tags$hr(),
                                   
+                                  directoryInput('directory', 
+                                                 label = 'Please select files for thickness mapping (CSV with  (nm, signal))'),
+                                  actionButton("thickness_mapping_calculation_but", 
+                                               "map thickness"),
+                                  helpText("Only signal is used for mapping, no background elimination at this moment"),
+                                  tags$hr(),
+                                  DT::dataTableOutput("thickness_dt")
                  ),
                  
                  tags$hr(),
