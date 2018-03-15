@@ -225,8 +225,16 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                                  label = 'Please select files for thickness mapping (CSV with  (nm, signal))'),
                                   actionButton("thickness_mapping_calculation_but", 
                                                "map thickness"),
-                                  helpText("Only signal is used for mapping, no background elimination at this moment"),
+                                  tags$li("Only signal is used for mapping, no background elimination at this moment"),
+                                  tags$li("wavelength range corresponding to selection in 'Final Spectrum Plot' is used"),
+                                  tags$li("manual specification of peaks (as in case of one file) does not make sense here"),
                                   tags$hr(),
+                                  selectInput("plot_2D_3D", 
+                                              "Plot type",
+                                              c("2D" = "2D",
+                                                "3D" = "3D")
+                                              ),
+                                  plotlyOutput("thickness_map"),
                                   DT::dataTableOutput("thickness_dt")
                  ),
                  
