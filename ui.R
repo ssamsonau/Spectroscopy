@@ -12,7 +12,6 @@ library(tidyverse)
 library(ggspectra)
 library(photobiology)
 library(photobiologyWavebands)
-library(shinyFiles)
 source('directoryInput.R')
 
 
@@ -27,11 +26,11 @@ shinyUI(fluidPage(
     sidebarPanel(
       
       conditionalPanel(condition="input.conditionedPanels==1",
-                       includeMarkdown("calibration_1.Rmd")
+                       includeMarkdown("notes/calibration_1.Rmd")
                        ),
       conditionalPanel(condition="input.conditionedPanels==2",
                        
-                       includeMarkdown("calibration_2.Rmd")
+                       includeMarkdown("notes/calibration_2.Rmd")
       ),
       
  
@@ -171,6 +170,12 @@ shinyUI(fluidPage(
                  fileInput("file_compare", 
                            "CSV File with data of spectrum, used to compare (nm, signal). This data will be rescaled to fit the same y range", 
                            width = "100%"),
+                 tags$hr(),
+                 h4("Table with Final Spectum data"),
+                 DT::dataTableOutput("finalSpectrum_dt"),
+                 h4("Save final data to file"),
+                 downloadButton("download_dt", "Download final data"),
+                 
                  
                  tags$hr(),
                  checkboxInput("thickness_calculation", "Calculate thickness of thin film? (choose before pressign calculate or press calculate again)", 
@@ -225,10 +230,12 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                                  label = 'Please select files for thickness mapping (CSV with  (nm, signal))'),
                                   actionButton("thickness_mapping_calculation_but", 
                                                "map thickness"),
+                                  tags$li("multifile files calculation works only if you run program localy"),
                                   tags$li("Only signal is used for mapping, no background elimination at this moment"),
                                   tags$li("wavelength range corresponding to selection in 'Final Spectrum Plot' is used"),
                                   tags$li("manual specification of peaks (as in case of one file) does not make sense here"),
                                   tags$li("all the files in folder should be of the same time with data in CSV format (nm, signal)"),
+                                  tags$li("expected format of file name: 'word 2-4, 0-2' for spectra taken at x = 2.4, y = 0.2"),
                                   tags$hr(),
                                   selectInput("plot_2D_3D", 
                                               "Plot type",
@@ -237,13 +244,9 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                               ),
                                   plotlyOutput("thickness_map"),
                                   DT::dataTableOutput("thickness_dt")
-                 ),
+                 )
                  
-                 tags$hr(),
-                 h4("Table with data"),
-                 DT::dataTableOutput("finalSpectrum_dt"),
-                 h4("Save final data to file"),
-                 downloadButton("download_dt", "Download final data")
+
                  
                  ),
         

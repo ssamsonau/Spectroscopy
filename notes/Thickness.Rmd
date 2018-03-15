@@ -123,6 +123,9 @@ Measurements can be done in Reflection/Backscatter geometry, or in -45 to +45 de
   * shine SLS lamp toward objective using 50/50 mirror in filter wheel
   * focus and send reflection to spectrometer
   * mapping can be pefrormed using manual or aruduino enabled control of maunal stage
+      * For mapping first use another (mapping) application to collect spectra at several positions
+      * Files will be saved in Andor format - use batch convert to csv (asc) files
+      * Then specify folder in this application, containing csv files
 
 #### Simulator of what you expect to see based on theory
 

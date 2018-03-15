@@ -22,6 +22,7 @@ Based on this formula we can make a plot (bellow) to see for which values of thi
   * Testing for wide range of m values
   * Blue - means difference near blue spectral end, IR - near IR spectral end
   * Obtained range is ~ 200 nm - 160 um
+  * This is only estimation. Using the full avaialbe to spectrometer spectrum of 200-1050 nm, and not limiting pattern with 200 nm, smaller thickness can be detected.
 
 ![](Thickness_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
@@ -70,6 +71,9 @@ Measurements can be done in Reflection/Backscatter geometry, or in -45 to +45 de
   * shine SLS lamp toward objective using 50/50 mirror in filter wheel
   * focus and send reflection to spectrometer
   * mapping can be pefrormed using manual or aruduino enabled control of maunal stage
+      * For mapping first use another (mapping) application to collect spectra at several positions
+      * Files will be saved in Andor format - use batch convert to csv (asc) files
+      * Then specify folder in this application, containing csv files
 
 #### Simulator of what you expect to see based on theory
 

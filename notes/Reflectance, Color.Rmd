@@ -49,6 +49,7 @@ _Video of reflection measurements_ [here](https://www.spectroscopytv.com/perform
     
 ### White standards and Lambertian reflectance
 
+* What is white - see this [discussion](https://www.quora.com/Paper-is-white-because-it-reflects-all-light-and-mirrors-reflect-all-light-so-why-dont-they-look-the-same)
 * [Lambertian reflectance](https://en.wikipedia.org/wiki/Lambertian_reflectance) - an ideal "matte" or diffusely reflecting surface. 
     - Closest to an ideal Lambertian surface - [Spectralon](https://en.wikipedia.org/wiki/Spectralon)
     - Another material - [Optical PFTE](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjS_rHbpqTZAhUBk1kKHbHLAy4QFghIMAE&url=https%3A%2F%2Fwww.berghof-fluoroplastics.com%2Ffileadmin%2FDateien-Einpflege%2FSeitenbaum%2FHome-Downloads%2FProdukte%2FPTFE-Produkte%2FOptisches%2520PTFE%2FBerghof_PTFE-Products_Optical-PTFE.pdf&usg=AOvVaw2De5nHstkNF2Fyq8akJizD)

@@ -29,3 +29,4 @@
     - Data for spectrum can be downloaded from  [here](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_ID=7269).
     - Light from the lamp should be directed on to [Lambertian screen](https://en.wikipedia.org/wiki/Lambertian_reflectance), which can be made from unfinished wood, a charcoal. This surface will diffusevelly reflect light from lamp, this reflection can be measured by a spectrometer. Lamp by itself has a non-isotropic radiation, thus spectrum would depend on the lamp position if lamp would be used directly (also lamp fillament has different temperature at differenet parts of the fillament).
     
+__If you see fringes (oscilation of signal)__ in the 800-1100 region without any good reason you are aware of, probably light is not entering spectrometer corectly. Adjutst light path in front of spectrometer. 
