@@ -52,7 +52,7 @@ found_peaks <- reactive({
     peak_int = peak_int
   )
   
-  if(input$manual_thickness_points != ""){
+  if(input$use_manually_chosen_peak_w){
     points <- str_split(input$manual_thickness_points, 
                         pattern = ",", simplify = T)  %>% 
       as.numeric()
@@ -69,7 +69,7 @@ found_peaks <- reactive({
   }
   
   
-  if(input$manual_thickness_points == ""){
+  if(!input$use_manually_chosen_peak_w){
     peak_plot <- peak_plot + 
       geom_point(data = plot_peaks, aes(peak_w, peak_int), 
                  color = "red", size = 2)
@@ -142,8 +142,11 @@ observeEvent(input$finalSpectrum_plot_click, {
   
 })
 
-observeEvent(input$manual_peak_update_but, {
+observeEvent(input$manual_thickness_points, {
   #browser()
   values$manually_chosen_peak_w <- 
     input$manual_thickness_points
 })
+
+
+

@@ -3,13 +3,14 @@ combined_data <- reactive({
     return(NULL)
 
   dt <- raw_data()
+  #browser()
   
   if(input$apply_calibration_correction){
   # modifications according to calibration on tungsten lamp
-  correction_from_calibration <- compare_calibration_data() %>% 
-    filter(type == "correction_factor") %>%
-    select(intensity_norm) %>% 
-    unlist()
+    correction_from_calibration <- compare_calibration_data() %>% 
+      filter(type == "correction_factor") %>%
+      select(intensity_norm) %>% 
+      unlist()
   
   
     dt <- dt %>%
