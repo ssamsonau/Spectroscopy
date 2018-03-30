@@ -197,8 +197,8 @@ shinyUI(fluidPage(
                                   tags$li("Empty circle shows position of a white color"),
                                   
                                   plotOutput("color_plot", width = "700px", height = "650px"),
-                                  h4("Final color")
-                                  #verbatimTextOutput("color_text")               
+                                  h4("Final color"),
+                                  verbatimTextOutput("color_text")               
                                   
                  ),
                  
