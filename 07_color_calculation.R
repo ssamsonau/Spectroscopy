@@ -1,5 +1,5 @@
 output$color_plot <- renderPlot({
-  #browser()
+  browser()
   w_range <- range(finalSpectrum()$wavelength)
   if(w_range[1] > 400 | w_range[2] < 700){
     values$final_color <- "NOT ENOUGTH DATA: spectrum should inlclude at least range 400-700 nm"
@@ -40,11 +40,12 @@ output$color_plot <- renderPlot({
   XYZ <- spectra2XYZ(df)
   uv <- CIE1931XYZ2CIE1976uv(XYZ)
   
-  values$final_color <- rgb(XYZ2RGB(XYZ/sum(XYZ)))
-  points(x = uv[1], y = uv[2], col = rgb(XYZ2RGB(XYZ/sum(XYZ))), pch = 19, lw = 9) # rescale to have full intensity of color. Otherwise it may be just dark
+  #values$final_color <- rgb(XYZ2RGB(XYZ/sum(XYZ)))
+  #points(x = uv[1], y = uv[2], col = rgb(XYZ2RGB(XYZ/sum(XYZ))), pch = 19, lw = 9) # rescale to have full intensity of color. Otherwise it may be just dark
+  points(x = uv[1], y = uv[2], pch = 19, lw = 9) # rescale to have full intensity of color. Otherwise it may be just dark
   
 })
 
-output$color_text <- renderText({
-  values$final_color
-})
+# output$color_text <- renderText({
+#   values$final_color
+# })

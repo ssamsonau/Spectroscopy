@@ -197,8 +197,8 @@ shinyUI(fluidPage(
                                   tags$li("Empty circle shows position of a white color"),
                                   
                                   plotOutput("color_plot", width = "700px", height = "650px"),
-                                  h4("Final color"),
-                                  verbatimTextOutput("color_text")               
+                                  h4("Final color")
+                                  #verbatimTextOutput("color_text")               
                                   
                  ),
                  
@@ -243,7 +243,8 @@ less than threshold*highest_peak/100 are ignored", 10, width = "100%"),
                                                 "3D" = "3D")
                                               ),
                                   plotlyOutput("thickness_map"),
-                                  DT::dataTableOutput("thickness_dt")
+                                  DT::dataTableOutput("thickness_dt"),
+                                  downloadButton("download_thickness_dt", "Download final data")
                  )
                  
 
