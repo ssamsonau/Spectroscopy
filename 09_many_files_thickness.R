@@ -195,3 +195,19 @@ output$thickness_map <- renderPlotly({
   
   
 })
+
+output$download_thickness_dt <- downloadHandler(
+  
+  # This function returns a string which tells the client
+  # browser what name to use when saving the file.
+  filename = function() {
+    paste0("Data_", Sys.time(), ".csv")
+  },
+  
+  # This function should write data to a file given to it by
+  # the argument 'file'.
+  content = function(file) {# Write to a file specified by the 'file' argument
+    write.table(thickness_res_df(), file, sep = ",",
+                row.names = FALSE)
+  }
+)
