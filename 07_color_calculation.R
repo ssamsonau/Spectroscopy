@@ -27,7 +27,7 @@ output$color_plot <- renderPlot({
   df <- finalSpectrum() %>%
     filter(type == "Final Spectrum") %>%
     select(wavelength, Intensity) %>%
-    filter(between(wavelength, 360, 760)) %>%
+    filter(between(wavelength, 400, 700)) %>%
     na.omit() %>%
     mutate(wavelength = round(wavelength, digits = 0)) %>%
     group_by(wavelength) %>%

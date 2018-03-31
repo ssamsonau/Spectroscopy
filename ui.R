@@ -42,7 +42,7 @@ shinyUI(fluidPage(
                        fileInput("file_sig", "CSV File with signal (nm, signal)"),
                        
                        checkboxInput("apply_calibration_correction", 
-                                     "Apply calibration correction obtained in previous tab",
+                                     "Apply calibration correction obtained in previous tab (ref and sig are transformed, bacground is not)",
                                      value = T)
                        # tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903", 
                        #        "Silver mirrors"),
@@ -192,7 +192,7 @@ shinyUI(fluidPage(
                                           under perfectly flat white light (yes?)."),
                                   tags$li("More details here:"),
                                   tags$a("https://en.wikipedia.org/wiki/CIE_1931_color_space#Computing_XYZ_From_Spectral_Data"),
-                                  tags$li("Color calculated based on 360-760 nm wavelenght range"),
+                                  tags$li("Color calculated based on 400-700 nm wavelenght range"),
                                   tags$li("Gray dots used to alling plot created in Mathematica with coordiantes in R plot"),
                                   tags$li("Empty circle shows position of a white color"),
                                   
