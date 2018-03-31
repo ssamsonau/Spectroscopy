@@ -1,5 +1,5 @@
 output$color_plot <- renderPlot({
-  browser()
+  #browser()
   w_range <- range(finalSpectrum()$wavelength)
   if(w_range[1] > 400 | w_range[2] < 700){
     values$final_color <- "NOT ENOUGTH DATA: spectrum should inlclude at least range 400-700 nm"

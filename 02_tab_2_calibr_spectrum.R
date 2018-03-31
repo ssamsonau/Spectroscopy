@@ -19,7 +19,7 @@ compare_calibration_data <- reactive({
   #browser()
   
   calibrate_signal_path <- ifelse(is.null(input$file_calibrate_signal),
-                                  "calibration/tungsten SLS201/SLS201_position 2.asc",
+                                  "calibration/tungsten SLS201/SLS_lamp_on_white_target_ForCalibration.asc",
                                   input$file_calibrate_signal$datapath)
   
   calibr_signal <- readr::read_csv(calibrate_signal_path)
