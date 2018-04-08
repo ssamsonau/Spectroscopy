@@ -19,6 +19,16 @@ combined_data <- reactive({
                                 intensity * correction_from_calibration , 
                                 intensity)) %>%
       ungroup()  
+    if(input$apply_calibration_correction_to_background){
+      dt <- dt %>%
+        group_by(type) %>%
+        mutate(intensity = ifelse(type == "background", 
+                                  intensity * correction_from_calibration , 
+                                  intensity)) %>%
+        ungroup() 
+    }
+    
+ 
   }
   
   

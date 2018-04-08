@@ -41,9 +41,14 @@ shinyUI(fluidPage(
                        fileInput("file_ref", "CSV File with reference (nm, signal)"),
                        fileInput("file_sig", "CSV File with signal (nm, signal)"),
                        
+                       h4("Apply calibration correction obtained in previous tab:"),
                        checkboxInput("apply_calibration_correction", 
-                                     "Apply calibration correction obtained in previous tab (ref and sig are transformed, bacground is not)",
-                                     value = T)
+                                     "Apply to Reference and Singnal",
+                                     value = T),
+                       checkboxInput("apply_calibration_correction_to_background", 
+                                     "Also apply to background",
+                                     value = F)
+                       
                        # tags$a(href="https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=903", 
                        #        "Silver mirrors"),
                        
