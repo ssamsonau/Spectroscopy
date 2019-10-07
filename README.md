@@ -2,7 +2,7 @@
 
 An interactive shiny application, for analysis of spectra obtained by a self-build spectrometer.
 
-Working app available here https://cloud.ket-labs.com/shiny/Spectroscopy/
+Working app available here https://ssamsonau.shinyapps.io/Spectroscopy/
 
 What can be done:
   * Spectrometer calibration
